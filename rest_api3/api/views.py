@@ -34,6 +34,7 @@ from django.http import HttpResponse, JsonResponse
 #     # return HttpResponse(json_data, content_type='application/json')
 #     return JsonResponse(serializer.data, safe=False)
 
+@csrf_exempt
 def student_info(request):
     if request.method == 'GET':
         json_data = request.body
@@ -52,3 +53,18 @@ def student_info(request):
             serializer = StudentSerializer(stu, many=True)
             json_data = JSONRenderer().render(serializer.data)
             return HttpResponse(json_data, content_type='application/json')
+    
+    if request.method == 'POST':
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        serializer = StudentSerializer(data=pythondata)
+        if serializer.is_valid():
+            serializer.save()
+            res = {
+                'msg': 'Data Created'
+            }
+            json_data = JSONRenderer().render(res)
+            return HttpResponse(json_data, content_type='application/json')
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data, content_type='application/json')
