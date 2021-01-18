@@ -76,6 +76,8 @@ def student_info(request):
         id = pythondata.get('id')
         stu = Student.objects.get(id=id)
         serializer = StudentSerializer(stu, data=pythondata, partial=True)
+        # for all data update
+        # serializer = StudentSerializer(stu, data=pythondata)
         if serializer.is_valid():
             serializer.save()
 
@@ -86,3 +88,19 @@ def student_info(request):
             return HttpResponse(json_data, content_type='application/json')
         json_data = JSONRenderer().render(serializer.errors)
         return HttpResponse(json_data, content_type='application/json')
+    
+    if request.method == 'DELETE':
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        try:
+            id = pythondata.get('id')
+            stu = Student.objects.get(id=id)
+            stu.delete()
+            res = {'msg': 'id deleted susessfully'}
+        except:
+            res = {'msg': 'id already deleted!!'}
+        # json_data = JSONRenderer().render(res)
+        # return HttpResponse(json_data, content_type='application/json')
+        # It can also be written
+        return JsonResponse(res, safe=False)
