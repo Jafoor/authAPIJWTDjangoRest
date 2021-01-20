@@ -2,17 +2,19 @@ from rest_framework import serializers
 from . models import Student
 
 # Validator
-# def start_with_r(value):
-#     if value[0].lower() != 's':
-#         raise serializers.ValidationError('Name should be start with r')
+def start_with_r(value):
+    if value[0].lower() != 's':
+        raise serializers.ValidationError('Name should be start with r')
 
 class StudentSerializer(serializers.ModelSerializer):
+
 
     # id = serializers.IntegerField()
     # name = serializers.CharField(max_length=100, validators=[start_with_r])
     # roll = serializers.IntegerField()
     # city = serializers.CharField(max_length=100) 
 
+    name = serializers.CharField(validators=[start_with_r])
     class Meta:
         model = Student
         fields = ['name', 'roll', 'city']    
