@@ -2,10 +2,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 
-from account.serializers import UserReristrationSerializer
+from account.serializers import UserRegistrationSerializer
 
 class UserReristrationView(APIView):
 
     def post(self, request, format=None):
-        serializer = UserReristrationSerializer()
-        return Response({'msg':'Registration Succesful!'})
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.save()
+            return Response({"msg":"Registration Successfull!"},
+            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
