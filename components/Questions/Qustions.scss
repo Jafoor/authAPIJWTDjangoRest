@@ -1,0 +1,117 @@
+.questions {
+  width: 80%;
+  margin: auto;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .question__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h2 {
+      color: var(--textColor);
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .closeBtn {
+      color: var(--textColor);
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .line {
+    margin: 10px 0;
+    border: solid 1px var(--primaryColor);
+  }
+
+  .progress {
+    padding: 10px 0;
+    width: 50%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      padding: 7px 0;
+      background: var(--secondaryColor);
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      span {
+        height: 100%;
+        display: block;
+        width: 30px;
+        color: rgb(255, 251, 251);
+        line-height: 30px;
+        position: absolute;
+        text-align: end;
+        padding-right: 5px;
+      }
+    }
+
+    p{
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: 520px) {
+      width: 100%;
+    }
+  }
+
+  .questions__answers{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .question__content{
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        gap: 5px;
+        .questionNumber{
+            color: var(--textColor);
+            font-size: 18px;
+        }
+        h2{
+            color: var(--textColor);
+            font-size: 18px;
+        }
+    }
+
+    .QuestionAttributes{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: end;
+        text-align: center;
+        align-items: center;
+
+        .btnStatus{
+            padding: 7px 14px;
+            border: solid 1px var(--primaryColor);
+            border-radius: 30px;
+            color: var(--textColor);
+        }
+
+        .checkMark{
+            font-size: 24px;
+            background: var(--whiteColor);
+            border: solid 1px var(--secondaryColor);
+            border-radius: 50%;
+            color: var(--secondaryColor);
+        }
+    }
+  }
+}
+

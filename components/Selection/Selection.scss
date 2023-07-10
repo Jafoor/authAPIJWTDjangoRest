@@ -7,9 +7,6 @@
     background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
     z-index: 1;
     max-height: 60vh;
-    .section_header{
-        
-    }
     .text{
         width: 60%;
         margin: auto;
@@ -30,6 +27,25 @@
         margin: 0;
         text-align: center;
     }
+    @media screen and (max-width: 520px) {
+        max-height: 80vh;
+
+        .text{
+            width: 80%;
+            margin: auto;
+    
+            h1{
+                margin: 1rem;
+                font-weight: 900;
+                font-size: 22px;
+                text-align: center;
+            }
+            p{
+                margin: 1rem;
+                text-align: center;
+            }
+        }
+    }
 }
 
 .q_a_section{
@@ -39,5 +55,68 @@
     margin: auto;
     border: solid 4px var(--secondaryColor);
     border-radius: 30px;
-    background: var(--whiteColor);
+    background: var(--lighterGrayColor);
+
+    .selection{
+        padding: 20px;
+
+        .tabList{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            padding: 5px;
+
+            .item{
+                font-weight: 500;
+                color: var(--textColor);
+            }
+
+            .active{
+                color: var(--primaryColor)
+            }
+        }
+    }
+
+    .item__details{
+        width: 90%;
+        height: auto;
+        padding: 10px 20px;
+        
+        .item_list{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            .item{
+                font-size: 14px;
+                font-weight: 500;
+                background: #fff;
+                padding: 7px 14px;
+                color: var(--textColor);
+                border-radius: 30px;
+                border: solid 1px #fff;
+
+                &:hover{
+                    transition: .3s;
+                    border: solid 1px var(--secondaryColor);
+                }
+            }
+
+            .active{
+                border: solid 1px var(--primaryColor);
+            }
+
+
+        }
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .question__answer{
+        width: 1250px;
+        margin: auto;
+    }
 }

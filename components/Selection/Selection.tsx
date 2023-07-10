@@ -1,3 +1,6 @@
+"use client"
+
+import Qustions from "../Questions/Qustions";
 import "./Selection.scss";
 
 const Selection = () => {
@@ -23,11 +26,11 @@ const Selection = () => {
     <div className="q_a_section">
       <div className="selection">
         <ul className="tabList">
-          <li className="item active">Web Design</li>
+          <li className="item active">Web & Mobile dev</li>
 
-          <li className="item">Programming</li>
+          <li className="item">Data structures & Algorithms</li>
 
-          <li className="item">Others</li>
+          <li className="item">Software Architecture</li>
         </ul>
       </div>
 
@@ -48,6 +51,8 @@ const Selection = () => {
           <li className="item">Nothing</li>
         </ul>
       </div>
+
+      <Qustions/>
       </div>
 
     </div>
