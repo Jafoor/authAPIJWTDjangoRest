@@ -1,0 +1,225 @@
+.header{
+    background: var(--whiteColor);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+    z-index: 1000;
+
+    .logoDiv{
+        .logo{
+            font-size: 20px;
+            text-transform: uppercase;
+	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font: {
+		size: 3vw;
+        weight: 900;
+	};
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .navbar{
+            position: absolute;
+            background: var(--secondaryColor);
+            width: 80%;
+            top: -100rem;
+            right: 50%;
+            left: 50%;
+            transform: translate(-50%);
+            border-radius: 10px;
+            text-align: -webkit-center;
+            padding: 2rem;
+            transition: .3s ease;
+
+            .closeIcon{
+                position: absolute;
+                bottom: -15px;
+                right: 50%;
+                left: 50%;
+                transform: translate(-50%);
+                background: var(--secondaryColor);
+                color: var(--primaryColor);
+                padding: 3px;
+                border-radius: 50%;
+                font-size: 35px;
+
+                &:hover{
+                    color: red;
+                }
+            }
+        }
+
+        .menu{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            .listItem{
+                padding: .5rem 1rem;
+                border-radius: 10px;
+                cursor: pointer;
+
+                a{
+                    font-size: 15px;
+                    color: var(--whiteColor);
+                }
+                &:hover{
+                    background: var(--primaryColor);
+                    color: var(--whiteColor);
+                    transition: .3s ease;
+                }
+                &:hover a{
+                    color: var(--whiteColor);
+                }
+            }
+        }
+    }
+
+    .SignUp{
+        gap: .5rem;
+        .text{
+            padding: 3px 10px;
+            background: var(--primaryColor);
+            color: var(--whiteColor);
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+
+            &:hover{
+                background: var(--secondaryColor);
+                color: var(--blackColor);
+            }
+        }
+
+        .toggleNavbarIcon{
+            background: none;
+            color: var(--primaryColor);
+            font-weight: 600;
+            font-size: 25px;
+        }
+    }
+
+    .showNavbar{
+        top: 7rem;
+        transition: .5s ease;
+    }
+}
+
+.addBg{
+    background: var(--secondaryColor);
+    box-shadow: none;
+    .navbar{
+        .menu{
+            .listItem{
+                a{
+                    color: var(--whiteColor);
+                }
+            }
+        }
+        
+        
+    }
+    
+}
+
+@media screen and (min-width: 520px){
+    .header{
+        .logoDiv{
+            img{
+                width: 30px;
+            }
+        }
+
+        .SignUp{
+            .text{
+                padding: 6px;
+                font-size: 16px;
+            }
+
+            .toggleNavbarIcon{
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:770px) {
+    .header{
+        .navbar{
+            .closeIcon{
+                display: none;
+            }
+
+            .menu{
+               display: flex;
+               flex-direction: row;
+
+               .listItem{
+                padding: .3rem 1rem;
+                border-radius: 3px;
+
+                a{
+                    color: var(--blackColor);
+                    font-size: 15px;
+                }
+                &:hover{
+                   background: var(--primaryColor);
+                   color: var(--whiteColor);
+                   transition: .3s ease; 
+                }
+                &:hover a{
+                    color: var(--whiteColor);
+                }
+               }
+            }
+        }
+
+        .SignUp{
+            .text{
+                padding: 6px 10px;
+                font-size: 16px;
+            }
+
+            .toggleNavbarIcon{
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:1064px) {
+    .header{
+        .navbar{
+            .menu{
+                .listItem{
+                    a{
+                        font-size: 17px;
+                    }
+                }
+            }
+        }
+
+        .SignUp{
+            .text{
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .header{
+        .navbar{
+            .menu{
+                .listItem{
+                    margin: 0 .8rem;
+                }
+            }
+        }
+    }
+}
