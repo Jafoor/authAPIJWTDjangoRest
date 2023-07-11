@@ -6,23 +6,28 @@
     padding: 6rem 0rem;
     background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
     z-index: 1;
-    max-height: 60vh;
+    max-height: 80vh;
     .text{
         width: 60%;
         margin: auto;
 
         h1{
-            margin: 1rem;
             font-weight: 900;
-            font-size: 30px;
+            font-size: 56px;
             text-align: center;
+            background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
         }
         p{
+            font-size: 20px;
             margin: 1rem;
             text-align: center;
         }
     }
     .browse__button{
+        font-size: 18px;
+        font-weight: 600;
         padding: 10px;
         margin: 0;
         text-align: center;
@@ -35,12 +40,13 @@
             margin: auto;
     
             h1{
-                margin: 1rem;
+                padding-top: 20px;
                 font-weight: 900;
-                font-size: 22px;
+                font-size: 32px;
                 text-align: center;
             }
             p{
+                font-size: 14px;
                 margin: 1rem;
                 text-align: center;
             }
@@ -53,6 +59,8 @@
     flex-direction: column;
     width: 80%;
     margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
     border: solid 4px var(--secondaryColor);
     border-radius: 30px;
     background: var(--lighterGrayColor);
@@ -82,6 +90,7 @@
     .item__details{
         width: 90%;
         height: auto;
+        margin: auto;
         padding: 10px 20px;
         
         .item_list{
@@ -112,11 +121,24 @@
 
         }
     }
+
+    @media screen and (max-width: 520px) {
+        width: 100%;
+
+        .selection {
+            padding: 10px;
+
+            .tabList{
+                gap: 10px;
+            }
+        }
+        
+    }
 }
 
-@media screen and (min-width:1400px) {
+@media screen and (min-width:1600px) {
     .question__answer{
-        width: 1250px;
+        width: 1400px;
         margin: auto;
     }
 }

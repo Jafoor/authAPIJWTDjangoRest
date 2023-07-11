@@ -12,6 +12,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
+    @media screen and (max-width: 520px) {
+      justify-content: center;
+    }
+
     h2 {
       color: var(--textColor);
       font-size: 24px;
@@ -74,15 +78,18 @@
     align-items: center;
 
     .question__content{
+        padding: 14px 1px;
         display: flex;
         flex-direction: row;
         justify-content: start;
         gap: 5px;
+        cursor: pointer;
         .questionNumber{
             color: var(--textColor);
             font-size: 18px;
         }
         h2{
+          font-weight: 600;
             color: var(--textColor);
             font-size: 18px;
         }
@@ -111,7 +118,26 @@
             border-radius: 50%;
             color: var(--secondaryColor);
         }
+
+        .done{
+          color: var(--primaryColor);
+          border: solid 1px var(--secondaryColor);
+        }
     }
   }
 }
 
+.answer{
+  width: 95%;
+  margin: auto;
+  max-height: none;
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: none;
+}
+
+.show{
+  display: block;
+  transition: 1s ease-out;
+}

@@ -1,9 +1,48 @@
-"use client"
+"use cline"
 
+import React , { useState} from "react";
 import Qustions from "../Questions/Qustions";
 import "./Selection.scss";
 
-const Selection = () => {
+const getTopic = async () => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/topics`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch topic");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default async function Selection () {
+
+  const x = await getTopic();
+  console.log(x);
+  
+  const topics = [
+    {
+      id: "1",
+      name: "Web & Mobile dev"
+    },
+    {
+      id: "2",
+      name: "Data Structures & Algorithms"
+    },
+    {
+      id: "3",
+      name: "Software Architecture"
+    }
+    
+  ]
+
+  const [topic, setTopic] = useState("");
+
   return (
     <div className="question__answer">
       <div className="section_header">
@@ -26,11 +65,9 @@ const Selection = () => {
     <div className="q_a_section">
       <div className="selection">
         <ul className="tabList">
-          <li className="item active">Web & Mobile dev</li>
-
-          <li className="item">Data structures & Algorithms</li>
-
-          <li className="item">Software Architecture</li>
+          { topics.map(item => (
+            <li className={`item ${topic === item.id ? 'active' : ''}`} onClick={() => setTopic(item.id)} key={item.id}>{item.name}</li>
+          ))}
         </ul>
       </div>
 
@@ -59,4 +96,3 @@ const Selection = () => {
   );
 };
 
-export default Selection;
