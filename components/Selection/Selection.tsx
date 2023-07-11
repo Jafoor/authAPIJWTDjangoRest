@@ -1,30 +1,22 @@
-"use cline"
+"use client"
 
-import React , { useState} from "react";
+import React , { useEffect, useState} from "react";
 import Qustions from "../Questions/Qustions";
 import "./Selection.scss";
 
-const getTopic = async () => {
-  try {
-    const res = await fetch(`http://localhost:3000/api/topics`, {
-      cache: "no-store",
-    });
+const  Selection = () => {
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch topic");
+  useEffect( () => {
+    async function name() {
+      const x = await fetch(`http://localhost:3000/api/topics`, {cache: 'no-store'});
+      const res = await x.json();
+      console.log({res});
+      
+      
     }
+    name()
+  }, [])
 
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export default async function Selection () {
-
-  const x = await getTopic();
-  console.log(x);
-  
   const topics = [
     {
       id: "1",
@@ -96,3 +88,4 @@ export default async function Selection () {
   );
 };
 
+export default Selection;

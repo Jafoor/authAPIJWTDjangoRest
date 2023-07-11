@@ -10,9 +10,15 @@ import { NextResponse } from "next/server";
 // }
 
 export async function GET() {
+  console.log("herer");
+  
   await connectMongo();
+  console.log("here1");
+  
   const topics = await Topics.find();
-  return NextResponse.json({ topics });
+  console.log({topics});
+  
+  return new Response(JSON.stringify(topics), {status: 200})
 }
 
 // export async function DELETE(request) {
