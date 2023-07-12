@@ -83,6 +83,7 @@
     .SignUp{
         gap: .5rem;
         .text{
+            width: max-content;
             padding: 3px 10px;
             background: var(--primaryColor);
             color: var(--whiteColor);

@@ -1,5 +1,5 @@
 import connectMongo from "@/app/utils/connectMongo";
-import Topics from "@/app/models/interview_topics";
+import Topics from "@/app/models/topics";
 import { NextResponse } from "next/server";
 
 // export async function POST(request) {

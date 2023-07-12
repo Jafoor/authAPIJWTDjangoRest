@@ -7,7 +7,11 @@ console.log(MONGO_URI);
 const connectMongo = async () => {
     console.log({MONGO_URI});
     
-    mongoose.connect(MONGO_URI);
+    mongoose.connect(
+        MONGO_URI,
+      )
 }
+
+
 
 export default connectMongo;
