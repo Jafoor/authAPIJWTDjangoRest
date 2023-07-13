@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-import "./Qustions.scss";
+import "./Questions.scss";
 
-const Qustions = () => {
+const Questions = () => {
 
     const [showAnswerId, setShowAnswerId] = useState("");
 
@@ -81,4 +81,4 @@ const Qustions = () => {
   );
 };
 
-export default Qustions;
+export default Questions;

@@ -19,6 +19,13 @@
 		size: 30px;
         weight: 900;
 	};
+
+    @media screen and (max-width:770px) {
+        font: {
+            size: 20px;
+            weight: 900;
+        };
+    }
         }
     }
 
