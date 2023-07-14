@@ -26,8 +26,6 @@ export async function PUT(request: any, { params }: TopicsProps) {
 }
 
 export async function GET(request: any, { params }: TopicsProps) {
-  console.log(params);
-  
   const { id } = params;
   await connectMongo();
   const topics = await SubTopics.find({ topic: id });

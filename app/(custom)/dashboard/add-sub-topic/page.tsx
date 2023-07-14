@@ -24,8 +24,6 @@ const Page = () => {
           cache: "no-store",
         });
         const res = await data.json();
-        console.log(res);
-        
         setTopics(res);
       }
       getTopics();

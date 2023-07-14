@@ -4,44 +4,31 @@ import { AiFillCheckCircle } from "react-icons/ai";
 
 import "./Questions.scss";
 
-const Questions = () => {
+type Question = {
+  _id: string;
+  topic: string;
+  subTopic: string;
+  question: string;
+  answer: string;
+  level: number;
+  important: number;
+  user: string;
+};
 
-    const [showAnswerId, setShowAnswerId] = useState("");
+type QuestionProps = {
+  data: Question[];
+};
+const Questions = ({ data }: QuestionProps) => {
+  const [showAnswerId, setShowAnswerId] = useState("");
 
-    const toggleId = (id: string) => {
-        if(showAnswerId === id){
-            setShowAnswerId("");
-        }else{
-            setShowAnswerId(id);
-        }
+  const toggleId = (id: string) => {
+    if (showAnswerId === id) {
+      setShowAnswerId("");
+    } else {
+      setShowAnswerId(id);
     }
-
-  const data = {
-    id: "akdsljfa8dsfiuhe",
-    data: [
-      {
-        id:"1",
-        question: "Name1 some characstics of python?",
-        level: "easy",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti quam dolore laboriosam quis maiores laudantium eos repellendus ea. Nisi enim cumque libero placeat ipsum soluta, dicta natus non rem ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit saepe non, possimus nisi fuga debitis sed, sequi odit inventore accusantium reprehenderit quo nostrum ea. Aliquid, ab. Sed, aspernatur. Voluptate, impedit",
-      },
-      {
-        id:"2",
-        question: "Name2 some characstics of python?",
-        level: "easy",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti quam dolore laboriosam quis maiores laudantium eos repellendus ea. Nisi enim cumque libero placeat ipsum soluta, dicta natus non rem ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit saepe non, possimus nisi fuga debitis sed, sequi odit inventore accusantium reprehenderit quo nostrum ea. Aliquid, ab. Sed, aspernatur. Voluptate, impedit",
-      },
-      {
-        id:"3",
-        question: "Name3 some characstics of python?",
-        level: "easy",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti quam dolore laboriosam quis maiores laudantium eos repellendus ea. Nisi enim cumque libero placeat ipsum soluta, dicta natus non rem ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit saepe non, possimus nisi fuga debitis sed, sequi odit inventore accusantium reprehenderit quo nostrum ea. Aliquid, ab. Sed, aspernatur. Voluptate, impedit",
-      },
-    ],
   };
+
   return (
     <div className="questions">
       <div className="question__header">
@@ -56,25 +43,39 @@ const Questions = () => {
         <p>Topic progress: 10%</p>
       </div>
 
-      { data?.data.map((item, index) => (
-        <div key={item.id}>
-            <div className="questions__answers">
-        <div className="question__content" onClick={() => toggleId(item.id)}>
-          <span className="questionNumber">{index+1}. </span>
-          <h2>{item.question}</h2>
-        </div>
+      {data?.map((item, index) => (
+        <div key={item._id}>
+          <div className="questions__answers">
+            <div
+              className="question__content"
+              onClick={() => toggleId(item._id)}
+            >
+              <span className="questionNumber">{index + 1}. </span>
+              <h2>{item.question}</h2>
+            </div>
 
-        <div className="QuestionAttributes">
-          <div className="btnStatus">{item.level}</div>
-          <AiFillCheckCircle className="checkMark done" />
-        </div>
-      </div>
+            <div className="QuestionAttributes">
+              <div className="btnStatus">
+                {(() => {
+                  switch (item.level) {
+                    case 1:
+                      return "Easy";
+                    case 2:
+                      return "Intermediate";
+                    case 3:
+                      return "Hard";
+                    default:
+                      return "";
+                  }
+                })()}
+              </div>
+              {<AiFillCheckCircle className="checkMark done" />}
+            </div>
+          </div>
 
-      <div className={`answer ${showAnswerId === item.id ? "show" : ""}`}>
-        <p>
-          {item.answer}
-        </p>
-      </div>
+          <div className={`answer ${showAnswerId === item._id ? "show" : ""}`}>
+            <p>{item.answer}</p>
+          </div>
         </div>
       ))}
     </div>
