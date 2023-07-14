@@ -30,6 +30,6 @@ export async function GET(request: any, { params }: TopicsProps) {
   
   const { id } = params;
   await connectMongo();
-  const topics = await SubTopics.find({ _id: id });
+  const topics = await SubTopics.find({ topic: id });
   return NextResponse.json({ topics }, { status: 200 });
 }

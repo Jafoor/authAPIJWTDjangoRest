@@ -1,23 +1,47 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+type SubTopic = {
+  name: string;
+  _id: string;
+  topic: string;
+};
+
 const Page = () => {
-    const [subTopic, setSubTopic] = useState("");
+
+  const [topic, setTopic] = useState("");
+  const [topics, setTopics] = useState([{ name: "", _id: "" }]);
+  const [subTopic, setSubTopic] = useState("");
+  const [subTopics, setSubTopics] = useState<SubTopic[]>([]);
 
     const router = useRouter();
+
+    useEffect(() => {
+      async function getTopics() {
+        const data = await fetch(`http://localhost:3000/api/topics`, {
+          cache: "no-store",
+        });
+        const res = await data.json();
+        console.log(res);
+        
+        setTopics(res);
+      }
+      getTopics();
+    }, []);
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
     
       
         try {
-          const res = await fetch("http://localhost:3000/api/topics", {
+          const res = await fetch(`http://localhost:3000/api/topics/${topic}`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",
             },
-            body: JSON.stringify({ name: subTopic }),
+            body: JSON.stringify({ name: subTopic, topic: topic }),
           });
     
           if (res.ok) {
@@ -32,6 +56,21 @@ const Page = () => {
   return (
     <>
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+    <div className="selection">
+          <ul className="tabList">
+            {topics.map((item) => (
+              <li
+                className={`item ${topic === item._id ? "active" : ""}`}
+                onClick={() => setTopic(item._id)}
+                key={item._id}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
       <div>
         <div>
           <label

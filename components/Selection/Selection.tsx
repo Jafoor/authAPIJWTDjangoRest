@@ -40,6 +40,9 @@ const Selection = () => {
     getTopics();
   }, []);
 
+  console.log(subTopics);
+  
+
   useEffect( () => {
     async function getSubTopics() {
       const data = await fetch(`http://localhost:3000/api/topics/${topic}`, {
@@ -95,7 +98,7 @@ const Selection = () => {
         <div className="item__details">
           <ul className="item_list">
             
-            {subTopics.length > 0 && subTopics.map(item => (
+            {subTopics.length > 0 ?? subTopics.map(item => (
                <li className={`item ${subTopic === item._id ? "active" : ""}`} key={item._id} onClick={() => setSubTopic(item._id)} >{item.name}</li>
             ))}
             
