@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
+import "suneditor/dist/css/suneditor.min.css";
+import Important from "../Important/Important";
+
 
 import "./Questions.scss";
 
@@ -19,39 +22,21 @@ type QuestionProps = {
   data: Question[];
 };
 const Questions = ({ data }: QuestionProps) => {
-  const [showAnswerId, setShowAnswerId] = useState("");
-
-  const toggleId = (id: string) => {
-    if (showAnswerId === id) {
-      setShowAnswerId("");
-    } else {
-      setShowAnswerId(id);
-    }
-  };
-
   return (
     <div className="questions">
       <div className="question__header">
         <h2>96 Python interview Questions</h2>
-        <IoIosCloseCircle className="closeBtn" />
       </div>
       <span className="line" />
-      <div className="progress">
-        <span>
-          <span></span>
-        </span>
-        <p>Topic progress: 10%</p>
-      </div>
 
       {data?.map((item, index) => (
-        <div key={item._id}>
+        <span key={item._id}>
           <div className="questions__answers">
             <div
               className="question__content"
-              onClick={() => toggleId(item._id)}
             >
               <span className="questionNumber">{index + 1}. </span>
-              <h2>{item.question}</h2>
+              <div className="text_editor" dangerouslySetInnerHTML={{ __html: item.question }}></div>
             </div>
 
             <div className="QuestionAttributes">
@@ -59,24 +44,24 @@ const Questions = ({ data }: QuestionProps) => {
                 {(() => {
                   switch (item.level) {
                     case 1:
-                      return "Easy";
+                      return "Basic";
                     case 2:
-                      return "Intermediate";
+                      return "Moderate";
                     case 3:
-                      return "Hard";
+                      return "Advance";
                     default:
                       return "";
                   }
                 })()}
               </div>
-              {<AiFillCheckCircle className="checkMark done" />}
+              <Important value={item.important} />
             </div>
           </div>
 
-          <div className={`answer ${showAnswerId === item._id ? "show" : ""}`}>
-            <p>{item.answer}</p>
+          <div className={`answer show`}>
+          <div className="text_editor" dangerouslySetInnerHTML={{ __html: item.answer }}></div>
           </div>
-        </div>
+        </span>
       ))}
     </div>
   );

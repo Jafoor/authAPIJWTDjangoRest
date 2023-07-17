@@ -25,10 +25,24 @@
 }
 
 body {
-  margin: 0;
+  margin: auto;
   min-height: 100vh;
   color: rgb(var(--foreground-rgb));
   background: var(--whiteColor);
+}
+
+pre, h1, h2, h2, h3, h4, h5, h6 {
+  color: var(--blackColor);
+}
+
+pre{
+  width: 100%;
+  white-space: pre-wrap; 
+  word-break: break-word;
+  max-height: 500px;
+  background: #c2c2c3;
+  overflow: auto;
+  padding: 10px 20px;
 }
 
 footer {

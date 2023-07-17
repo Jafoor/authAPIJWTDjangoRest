@@ -1,0 +1,51 @@
+.rating {
+    display: inline-block;
+  
+    .star {
+      margin: 0;
+      position: relative;
+      display: block;
+      color: red;
+      width: 0;
+      height: 0;
+      border-right: 20px solid transparent;
+      border-bottom: 14px solid red;
+      border-left: 20px solid transparent;
+      transform: rotate(35deg);
+  
+      &::before {
+        border-bottom: 16px solid red;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        position: absolute;
+        height: 0;
+        width: 0;
+        top: -9px;
+        left: -13px;
+        display: block;
+        content: '';
+        transform: rotate(-35deg);
+      }
+  
+      &::after {
+        position: absolute;
+        display: block;
+        color: red;
+        top: 1px;
+        left: -25px;
+        width: 0;
+        height: 0;
+        border-right: 20px solid transparent;
+        border-bottom: 14px solid red;
+        border-left: 20px solid transparent;
+        transform: rotate(-70deg);
+        content: '';
+      }
+    }
+  
+    &.filled .star,
+    .star.filled .star {
+      color: gold;
+    }
+  }
+  

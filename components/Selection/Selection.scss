@@ -4,9 +4,9 @@
     height: 100%;
     flex-direction: row;
     padding: 6rem 0rem;
-    background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+    background-image: linear-gradient(to right, #232526, #414345);
     z-index: 1;
-    max-height: 80vh;
+    min-height: 100vh;
     .text{
         width: 60%;
         margin: auto;
@@ -59,15 +59,29 @@
     display: flex;
     flex-direction: column;
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    border: solid 4px var(--secondaryColor);
     border-radius: 30px;
-    background: var(--lighterGrayColor);
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+        font-size: 30px;
+        font-weight: 700;
+        color: var(--primaryColor);
+        margin: 0 auto;
+    }
+
+    p{
+        font-size: 18px;
+        margin: 0 auto;
+        padding: 20px 10px;
+    }
 
     .selection{
-        padding: 20px;
+        padding: 10px 20px;
 
         .tabList{
             display: flex;
@@ -91,7 +105,7 @@
     .item__details{
         width: 90%;
         height: auto;
-        margin: auto;
+        margin: 0 auto;
         padding: 10px 20px;
         
         .item_list{
@@ -134,12 +148,5 @@
             }
         }
         
-    }
-}
-
-@media screen and (min-width:1600px) {
-    .question__answer{
-        width: 1400px;
-        margin: auto;
     }
 }

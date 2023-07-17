@@ -14,24 +14,11 @@ const optionConfig = {
   admin: {
     resizingBar: false,
     buttonList: [
-      [
-        "formatBlock",
-        "bold",
-        "underline",
-        "italic",
-        "strike",
-        "blockquote",
-        "showBlocks",
-        "fontColor",
-        "hiliteColor",
-        "align",
-        "list",
-        "table",
-        "link",
-        "image",
-        "video",
-        "removeFormat",
-      ],
+      ['undo', 'redo', 'font', 'fontSize', 'formatBlock'],
+      ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'removeFormat'],
+'/', 
+      ['fontColor', 'hiliteColor', 'outdent', 'indent', 'align', 'horizontalRule', 'list', 'table'],
+      ['link', 'image', 'video', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'print', 'save']
     ],
   },
   "institute-admin": {

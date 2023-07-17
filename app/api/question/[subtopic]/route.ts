@@ -3,7 +3,6 @@ import Questions from "@/app/models/questions";
 import { NextResponse } from "next/server";
 
 type QuestionParams = {
-    topic: string;
     subtopic: string;
   };
   
@@ -12,9 +11,9 @@ type QuestionParams = {
   };
 
 export async function GET(request: any, { params }: QuestionsProps) {
-  const { topic, subtopic } = params;
+  const { subtopic } = params;
   await connectMongo();
-  const questions = await Questions.find({topic, subTopic: subtopic});
+  const questions = await Questions.find({subTopic: subtopic});
   return new Response(JSON.stringify(questions), {status: 200})
 }
 
