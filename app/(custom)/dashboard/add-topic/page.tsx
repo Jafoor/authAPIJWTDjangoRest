@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+
+const APP_URI = process.env.APP_URI;
+
 const Page = () => {
     const [topic, setTopic] = useState("");
 
@@ -12,7 +15,7 @@ const Page = () => {
     
       
         try {
-          const res = await fetch("http://localhost:3000/api/topics", {
+          const res = await fetch(`${APP_URI}/api/topics`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",

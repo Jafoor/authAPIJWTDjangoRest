@@ -1,8 +1,8 @@
-"use client"
+import Questions from "@/components/Questions/Questions";
 
-import React, {useState, useEffect} from 'react'
-import Questions from '@/components/Questions/Questions';
-
+import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import { getSubTopicQuestion, getSubTopicDetails, getAllSubTopic } from "@/app/utils/dataFetch";
 const APP_URI = process.env.APP_URI;
 
 type Question = {
@@ -14,30 +14,65 @@ type Question = {
   level: number;
   important: number;
   isPublished: boolean;
-  user: string
+  user: string;
 };
 
-const Question = ({ params }: { params: { subtopic: string } }) => {
+type SubTopic = {
+  _id: string;
+  topic: string;
+  name: string;
+};
+
+export async function generateMetadata(
+  { params }: { params: { subtopic: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const { subtopic } = params;
-  const [questions, setQuestions] = useState<Question[]>([]);
-  useEffect( () => {
-    async function getAllQuestions() {
-      const data = await fetch(`${APP_URI}/api/question/${subtopic}`, {
-        cache: "no-store",
-      });
-      const res = await data.json();
-      
-      setQuestions(res)
-    }
-    if(subtopic){
-      getAllQuestions();
-    }
-  }, [subtopic])
-    console.log({params});
-    
-  return (
-    <Questions data={questions}/>
-  )
+
+  try {
+    const res = await getSubTopicDetails(subtopic);
+    return {
+      title: `${res.subTopics.name} Interview Questions`,
+      description: `Discover a comprehensive collection of ${res.subTopics.name} interview questions, ranging from easy to hard difficulty levels. This curated compilation includes answers to help you prepare for your next ${res.subTopics.name} job interview. Expand your knowledge and gain confidence in tackling various aspects of ${res.subTopics.name} development with this valuable resource`,
+      alternates: {
+        canonical: `/questions/${res.subTopics._id}`,
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist.",
+    };
+  }
 }
 
-export default Question
+export async function generateStaticParams() {
+  const subTopics = await getAllSubTopic();
+
+  if (!subTopics) return [];
+
+  return subTopics.map((item: any) => ({
+    params: {subtopic : item._id.toString()}
+  }));
+}
+
+const Question = async ({ params }: { params: { subtopic: string } }) => {
+  const { subtopic } = params;
+  let questions, subTopic;
+  try{
+
+    questions = await getSubTopicQuestion(subtopic);
+
+    subTopic = await getSubTopicDetails(subtopic);
+    }catch(error){
+    notFound();
+  }
+
+  return (
+    <>
+      <Questions data={questions} topic={subTopic.name} />
+    </>
+  );
+};
+
+export default Question;

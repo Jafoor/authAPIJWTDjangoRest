@@ -7,6 +7,9 @@ import "@/components/Selection/Selection.scss";
 import { useSession } from "next-auth/react";
 
 import SunTextEditor from "@/components/SunEditor/Suneditor";
+import "./page.scss";
+
+const APP_URI = process.env.APP_URI;
 
 type SubTopic = {
   name: string;
@@ -34,7 +37,7 @@ const Page = () => {
 
     useEffect(() => {
       async function getTopics() {
-        const data = await fetch(`http://localhost:3000/api/topics`, {
+        const data = await fetch(`${APP_URI}/api/topics`, {
           cache: "no-store",
         });
         const res = await data.json();
@@ -45,7 +48,7 @@ const Page = () => {
 
     useEffect( () => {
         async function getSubTopics() {
-          const data = await fetch(`http://localhost:3000/api/topics/${topic}`, {
+          const data = await fetch(`${APP_URI}/api/topics/${topic}`, {
             cache: "no-store",
           });
           const res = await data.json();
@@ -62,7 +65,7 @@ const Page = () => {
       
         try {
             if(topic && subTopic && question && answer && level && important && isPublished && session){
-                const res = await fetch(`http://localhost:3000/api/question`, {
+                const res = await fetch(`${APP_URI}/api/question`, {
                     method: "POST",
                     headers: {
                       "Content-type": "application/json",
@@ -85,7 +88,7 @@ const Page = () => {
     <>
     <form onSubmit={handleSubmit} className="w-full m-auto flex flex-col gap-3">
 
-    <div className="q_a_section">
+    <div className="topics_selection">
         <div className="selection">
             <h1>Select Topics</h1>
           <ul className="tabList">
@@ -189,7 +192,7 @@ const Page = () => {
           />
         </div>
 
-        <label>
+        <label className="gap-3">
         <input
           type="checkbox"
           checked={isPublished}

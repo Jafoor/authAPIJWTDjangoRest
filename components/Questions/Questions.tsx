@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
 import "suneditor/dist/css/suneditor.min.css";
 import Important from "../Important/Important";
-
+import Head from "next/head";
 
 import "./Questions.scss";
 
@@ -20,50 +20,68 @@ type Question = {
 
 type QuestionProps = {
   data: Question[];
+  topic: string;
 };
-const Questions = ({ data }: QuestionProps) => {
+const Questions = ({ data, topic }: QuestionProps) => {
   return (
-    <div className="questions">
-      <div className="question__header">
-        <h2>96 Python interview Questions</h2>
-      </div>
-      <span className="line" />
+    <>
+      <Head>
+        <title>{`${data.length} ${topic} Interview Questions`}</title>
 
-      {data?.map((item, index) => (
-        <span key={item._id}>
-          <div className="questions__answers">
-            <div
-              className="question__content"
-            >
-              <span className="questionNumber">{index + 1}. </span>
-              <div className="text_editor" dangerouslySetInnerHTML={{ __html: item.question }}></div>
-            </div>
+        <meta
+          property="og:title"
+          content={`${data.length} ${topic} Interview Questions`}
+          key="title"
+        />
+      </Head>
+      <div className="questions">
+        <div className="question__header">
+          <h2>
+            {data.length} {topic} interview Questions
+          </h2>
+        </div>
+        <span className="line" />
 
-            <div className="QuestionAttributes">
-              <div className="btnStatus">
-                {(() => {
-                  switch (item.level) {
-                    case 1:
-                      return "Basic";
-                    case 2:
-                      return "Moderate";
-                    case 3:
-                      return "Advance";
-                    default:
-                      return "";
-                  }
-                })()}
+        {data?.map((item, index) => (
+          <span key={item._id}>
+            <div className="questions__answers">
+              <div className="question__content">
+                <span className="questionNumber">{index + 1}. </span>
+                <div
+                  className="text_editor"
+                  dangerouslySetInnerHTML={{ __html: item.question }}
+                ></div>
               </div>
-              <Important value={item.important} />
-            </div>
-          </div>
 
-          <div className={`answer show`}>
-          <div className="text_editor" dangerouslySetInnerHTML={{ __html: item.answer }}></div>
-          </div>
-        </span>
-      ))}
-    </div>
+              <div className="QuestionAttributes">
+                <div className="btnStatus">
+                  {(() => {
+                    switch (item.level) {
+                      case 1:
+                        return "Basic";
+                      case 2:
+                        return "Moderate";
+                      case 3:
+                        return "Advance";
+                      default:
+                        return "";
+                    }
+                  })()}
+                </div>
+                <Important value={item.important} />
+              </div>
+            </div>
+
+            <div className={`answer show`}>
+              <div
+                className="text_editor"
+                dangerouslySetInnerHTML={{ __html: item.answer }}
+              ></div>
+            </div>
+          </span>
+        ))}
+      </div>
+    </>
   );
 };
 

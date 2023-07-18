@@ -19,13 +19,12 @@ const Navbar = () => {
 <header>
         <div className="navbar">
             <div className="logo">
-                <a href="#"> Web Dev Creative </a>
+                <Link href="/"> Web Dev Creative </Link>
             </div>
             <ul className="links">
-                <li><a href="hero">HOME</a></li>
-                <li><a href="hero">HOME</a></li>
-                <li><a href="hero">LIST</a></li>
-                <li><a href="hero">LIST</a></li>
+                <li><Link href="/">HOME</Link></li>
+                <li><a href="/resources">RESOURCES</a></li>
+                <li><a href="/interviews">INTERVIEWS</a></li>
             </ul>
             {session && session.user ? (
             <a href="#" className="action_btn" onClick={() => signOut()} > Sign Out </a>

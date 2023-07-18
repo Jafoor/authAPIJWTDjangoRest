@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+const APP_URI = process.env.APP_URI;
+
 type SubTopic = {
   name: string;
   _id: string;
@@ -20,7 +22,7 @@ const Page = () => {
 
     useEffect(() => {
       async function getTopics() {
-        const data = await fetch(`http://localhost:3000/api/topics`, {
+        const data = await fetch(`${APP_URI}/api/topics`, {
           cache: "no-store",
         });
         const res = await data.json();
@@ -34,7 +36,7 @@ const Page = () => {
     
       
         try {
-          const res = await fetch(`http://localhost:3000/api/topics/${topic}`, {
+          const res = await fetch(`${APP_URI}/api/topics/${topic}`, {
             method: "POST",
             headers: {
               "Content-type": "application/json",

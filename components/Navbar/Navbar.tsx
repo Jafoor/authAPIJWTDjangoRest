@@ -40,9 +40,12 @@ const Navbar = () => {
 
   return (
     <div className={header}>
+      <Link href="/">
       <div className="logoDiv">
         <span className="logo">Quick Prep</span>
       </div>
+      </Link>
+      
 
       <div className={navbar}>
         <ul className="menu">
