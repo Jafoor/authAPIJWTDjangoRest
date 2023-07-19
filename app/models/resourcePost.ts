@@ -3,15 +3,20 @@ import { Schema, model, models } from "mongoose";
 const ResourceSchema = new Schema(
   {
     user: String,
-    question: String,
-    answer: String,
-    level: Number,
-    important: Number,
+    title: String,
+    shortDescription: String,
+    image: String,
+    description: String,
     isPublished: Boolean,
-    topic: {
+    topNews: Boolean,
+    topOthers: Boolean,
+    tag: String,
+    popular: Boolean,
+    category: {
       type: Schema.Types.ObjectId,
       ref: "ResourceCategory",
     },
+    categoryName: String,
   },
   {
     timestamps: true,

@@ -9,7 +9,6 @@ const ResourceCategorySchema = new Schema(
   }
 );
 
-const ResourceCategory =
-  models.ResourceCategory || model("ResourceCategory", ResourceCategorySchema);
+const ResourceCategory = models.ResourceCategory || model("ResourceCategory", ResourceCategorySchema);
 
 export default ResourceCategory;

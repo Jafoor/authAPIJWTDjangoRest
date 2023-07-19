@@ -2,7 +2,6 @@ const APP_URI = process.env.APP_URI;
 import connectMongo from "@/app/utils/connectMongo";
 import SubTopics from "@/app/models/subTopics";
 import Questions from "../models/questions";
-import { json } from "stream/consumers";
 
 export async function getSubTopicQuestion(subtopic:string) {
     await connectMongo();

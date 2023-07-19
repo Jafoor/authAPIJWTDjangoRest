@@ -12,7 +12,8 @@ import Image from "next/image";
 
 const Navbar = () => {
   const { data: session } = useSession();
-
+    console.log({session});
+    
   const [open, setOpen] = useState(false);
 
   return (
@@ -23,12 +24,15 @@ const Navbar = () => {
             </div>
             <ul className="links">
                 <li><Link href="/">HOME</Link></li>
-                <li><a href="/resources">RESOURCES</a></li>
-                <li><a href="/interviews">INTERVIEWS</a></li>
+                <li><Link href="/resources">RESOURCES</Link></li>
+                <li><Link href="/interviews">INTERVIEWS</Link></li>
+                {(session && session.user?.isAdmin) ? (
+                    <li><Link href="/dashboard">DASHBOARD</Link></li>
+                ): null}
             </ul>
             {session && session.user ? (
-            <a href="#" className="action_btn" onClick={() => signOut()} > Sign Out </a>
-            ) : (<a href="#" className="action_btn" onClick={() => signIn()} > Get Started</a>)}
+            <Link href="#" className="action_btn" onClick={() => signOut()} > Sign Out </Link>
+            ) : (<Link href="#" className="action_btn" onClick={() => signIn()} > Get Started</Link>)}
             <div className="toggle_btn open">
                 {open?
                 <IoIosCloseCircle onClick={() => setOpen(false)}/> :
@@ -39,14 +43,13 @@ const Navbar = () => {
             </div>
 
             <div className={`dropdown_menu ${open ? "open" : ""}`}>
-                <li><a href="hero">Resources</a></li>
-                <li><a href="hero">HOME</a></li>
-                <li><a href="hero">LIST</a></li>
-                <li><a href="hero">LIST</a></li>
+                <li><Link href="/">HOME</Link></li>
+                <li><Link href="/resources">RESOURCES</Link></li>
+                <li><Link href="/interviews">INTERVIEWS</Link></li>
                 {session && session.user ? (
-                <li><a href="#" className="action_btn" onClick={() => signOut()}> Sign Out </a></li>
+                <li><Link href="#" className="action_btn" onClick={() => signOut()}> Sign Out </Link></li>
                 ) : 
-                ( <li><a href="#" className="action_btn" onClick={() => signIn()}> Sign In </a></li>)}
+                ( <li><Link href="#" className="action_btn" onClick={() => signIn()}> Sign In </Link></li>)}
             </div>
         </div>
     </header>
