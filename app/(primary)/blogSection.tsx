@@ -44,8 +44,8 @@ const BlogSection = () => {
     <section className="bg-white dark:bg-gray-900">
   <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-          <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Blog</h2>
-          <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">We use an agile approach to test assumptions and connect with the needs of your audience early and often.</p>
+          <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Tech Resources and Insights</h2>
+          <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">The gateway to the vast universe of technology and beyond. Unleash your curiosity and embark on an exciting journey through the ever-evolving realm of tech with us!</p>
       </div> 
       <div className="grid gap-8 lg:grid-cols-2">
             { resources.map( (item) => (
@@ -57,7 +57,11 @@ const BlogSection = () => {
                     </span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><Link href="#">{item.title}</Link></h2>
-                <div className="mb-5 font-light text-gray-500 dark:text-gray-400" dangerouslySetInnerHTML={{__html: item.shortDescription}}></div>
+                <div className="mb-5 font-light text-gray-500 dark:text-gray-400">
+                <p>
+                    {item.shortDescription.slice(0,150)}
+                    </p>
+                </div>
                 <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-4">
                         <Image className="w-7 h-7 rounded-full" src={item.image} alt={item.title} width={300} height={300} />

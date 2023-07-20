@@ -5,6 +5,7 @@ const ResourceSchema = new Schema(
     user: String,
     title: String,
     shortDescription: String,
+    keywords: String,
     image: String,
     description: String,
     isPublished: Boolean,

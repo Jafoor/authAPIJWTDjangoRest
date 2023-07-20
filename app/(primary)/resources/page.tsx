@@ -105,8 +105,11 @@ const page = async () => {
             
             <div
                   className="text-gray-600 mb-4"
-                  dangerouslySetInnerHTML={{ __html: main.shortDescription }}
-                ></div>
+                >
+                  <p>
+                  {main.shortDescription.slice(0,150)}
+                  </p>
+                </div>
             
             <Link
               href="./blog.html"
@@ -138,8 +141,10 @@ const page = async () => {
                   <div className="md:mt-0 text-gray-800 font-semibold text-xl mb-2">
                     {item.title}
                   </div>
-                  <div className="block md:hidden p-2 pl-0 pt-1 text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.shortDescription }}>
-                
+                  <div className="block md:hidden p-2 pl-0 pt-1 text-sm text-gray-600">
+                    <p>
+                    {item.shortDescription.slice(0,150)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -175,8 +180,10 @@ const page = async () => {
               <h2 className="font-bold text-2xl text-gray-800">
                 {item.title}
               </h2>
-              <div className="text-gray-700 mt-2" dangerouslySetInnerHTML={{ __html: item.shortDescription }}>
-             
+              <div className="text-gray-700 mt-2">
+              <p>
+                    {item.shortDescription.slice(0,150)}
+                    </p>
               </div>
 
               <Link
@@ -245,8 +252,10 @@ const page = async () => {
               <h2 className="font-bold text-2xl text-gray-800">
                 {item.title}
               </h2>
-              <div className="text-gray-700 mt-2" dangerouslySetInnerHTML={{ __html: item.shortDescription }}>
-                
+              <div className="text-gray-700 mt-2">
+              <p>
+                    {item.shortDescription.slice(0,150)}
+                    </p>
               </div>
 
               <Link

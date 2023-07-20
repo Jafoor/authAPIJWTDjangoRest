@@ -6,13 +6,12 @@ const Header = () => {
   <section className="mb-32 text-center">
     <div className="flex justify-center">
       <div className="max-w-[800px]">
-        <h2 className="mb-12 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
+        <h2 className="mb-12 text-4xl font-bold tracking-tight md:text-5xl xl:text-6xl">
           Are you ready <br />
-          <span className="text-primary dark:text-primary-400">for an adventure?</span>
+          <span className="text-primary dark:text-primary-400">for your next interview?</span>
         </h2>
         <p className="text-lg text-neutral-500 dark:text-neutral-300">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-          officia consequatur adipisci tenetur repudiandae rerum quos.
+        Master interviews with expert-curated questions & answers for job seekers and employers. Empower your career today!
         </p>
       </div>
     </div>

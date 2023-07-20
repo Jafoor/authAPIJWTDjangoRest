@@ -21,6 +21,7 @@ const FormComponent = () => {
     user: '',
     title: '',
     shortDescription: '',
+    keywords: '',
     image: '',
     description: '',
     isPublished: false,
@@ -98,7 +99,7 @@ const FormComponent = () => {
 
       <div className="mb-4">
         <label htmlFor="shortDescription" className="block text-gray-700 text-sm font-bold mb-2">Short Description</label>
-        <SunTextEditor
+        {/* <SunTextEditor
           setOptionsType="admin"
           defaultValue=
             {formData.shortDescription}
@@ -108,8 +109,13 @@ const FormComponent = () => {
           onValueChange={(val) =>
             onValueChangeEditor('shortDescription', val)
           }
-          />
-        {/* <input type="text" id="shortDescription" name="shortDescription" value={formData.shortDescription} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" /> */}
+          /> */}
+        <input type="text" id="shortDescription" name="shortDescription" value={formData.shortDescription} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="keywords" className="block text-gray-700 text-sm font-bold mb-2">keywords</label>
+        <input type="text" id="keywords" name="keywords" value={formData.keywords} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
 
       <div className="mb-4">
