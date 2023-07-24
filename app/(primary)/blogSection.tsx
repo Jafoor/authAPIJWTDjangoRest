@@ -30,9 +30,7 @@ const BlogSection = () => {
     const [resources, setResources] = useState<FormDataType[]>([]);
     useEffect( () => {
         async function getResources() {
-            const data = await fetch(`${APP_URI}/api/resource/filter/home-topics`, {
-              cache: "no-store",
-            });
+            const data = await fetch(`${APP_URI}/api/resource/filter/home-topics`);
             const res = await data.json();
             console.log({res});
             

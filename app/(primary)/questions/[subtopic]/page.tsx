@@ -17,12 +17,6 @@ type Question = {
   user: string;
 };
 
-type SubTopic = {
-  _id: string;
-  topic: string;
-  name: string;
-};
-
 export async function generateMetadata(
   { params }: { params: { subtopic: string } },
   parent: ResolvingMetadata
@@ -32,13 +26,15 @@ export async function generateMetadata(
   try {
     const res = await getSubTopicDetails(subtopic);
     return {
-      title: `${res.subTopics.name} Interview Questions`,
-      description: `Discover a comprehensive collection of ${res.subTopics.name} interview questions, ranging from easy to hard difficulty levels. This curated compilation includes answers to help you prepare for your next ${res.subTopics.name} job interview. Expand your knowledge and gain confidence in tackling various aspects of ${res.subTopics.name} development with this valuable resource`,
+      title: `${res.name} Interview Questions`,
+      description: `Discover a comprehensive collection of ${res.name} interview questions, ranging from easy to hard difficulty levels. This curated compilation includes answers to help you prepare for your next ${res.name} job interview. Expand your knowledge and gain confidence in tackling various aspects of ${res.name} development with this valuable resource`,
       alternates: {
-        canonical: `/questions/${res.subTopics._id}`,
+        canonical: `/questions/${res._id}`,
       },
     };
   } catch (error) {
+    console.log({error});
+    
     return {
       title: "Not Found",
       description: "The page you are looking for does not exist.",
@@ -60,9 +56,7 @@ const Question = async ({ params }: { params: { subtopic: string } }) => {
   const { subtopic } = params;
   let questions, subTopic;
   try{
-
     questions = await getSubTopicQuestion(subtopic);
-
     subTopic = await getSubTopicDetails(subtopic);
     }catch(error){
     notFound();
@@ -70,7 +64,7 @@ const Question = async ({ params }: { params: { subtopic: string } }) => {
 
   return (
     <>
-      <Questions data={questions} topic={subTopic.name} />
+      <Questions data={questions} topic={subTopic} />
     </>
   );
 };

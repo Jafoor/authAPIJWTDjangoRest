@@ -13,6 +13,6 @@ export async function POST(request: any) {
 
 export async function GET() {
     await connectMongo();
-    const contact = await Contact.find();
+    const contact = await Contact.find().sort({ createdAt: -1 });
     return new Response(JSON.stringify(contact), {status: 200})
 }

@@ -44,6 +44,29 @@ const Sidebar = () => {
             </Link>
          </li>
 
+         <li>
+            <Link href="/dashboard/contact-list" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span className="ml-3">Contact List</span>
+            </Link>
+         </li>
+
+         <li>
+            <Link href="/dashboard/subtopics-list" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span className="ml-3">Sub-Topic List</span>
+            </Link>
+         </li>
+
+         <li>
+            <Link href="/dashboard/resources-list" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span className="ml-3">Resource List</span>
+            </Link>
+         </li>
+
+         <li>
+            <Link href="/dashboard/questions-list" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <span className="ml-3">Questions List</span>
+            </Link>
+         </li>
       </ul>
    </div>
 </aside>

@@ -26,17 +26,13 @@ const Selection = () => {
 
   useEffect(() => {
     async function getTopics() {
-      const data = await fetch(`${APP_URI}/api/topics`, {
-        cache: "no-store",
-      });
+      const data = await fetch(`${APP_URI}/api/topics`);
       const res = await data.json();
       setTopics(res);
     }
 
     async function getAllSubTopics() {
-      const data = await fetch(`${APP_URI}/api/subtopics`, {
-        cache: "no-store",
-      });
+      const data = await fetch(`${APP_URI}/api/subtopics`);
 
       const res = await data.json();
 

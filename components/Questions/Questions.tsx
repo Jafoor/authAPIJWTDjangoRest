@@ -1,9 +1,10 @@
 import React from "react";
-import { IoIosCloseCircle } from "react-icons/io";
-import { AiFillCheckCircle } from "react-icons/ai";
+// import { IoIosCloseCircle } from "react-icons/io";
+// import { AiFillCheckCircle } from "react-icons/ai";
 import "suneditor/dist/css/suneditor.min.css";
-import Important from "../Important/Important";
+// import Important from "../Important/Important";
 import Head from "next/head";
+import Image from "next/image";
 
 import "./Questions.scss";
 
@@ -18,27 +19,68 @@ type Question = {
   user: string;
 };
 
+type SubTopic = {
+  _id: string;
+  topic: string;
+  title?: string;
+  topDescription?: string;
+  keywords?: string;
+  image?: string;
+  shortDescription?: string;
+  name: string;
+};
+
 type QuestionProps = {
   data: Question[];
-  topic: string;
+  topic: SubTopic;
 };
 const Questions = ({ data, topic }: QuestionProps) => {
   return (
     <>
       <Head>
-        <title>{`${data.length} ${topic} Interview Questions`}</title>
+        {topic.title ? (
+          <title>{topic.title}</title>
+        ) : (
+<title>{`${data.length} ${topic.name} Interview Questions`}</title>
+        )
+        
+      }
+        
 
         <meta
           property="og:title"
-          content={`${data.length} ${topic} Interview Questions`}
+          
+          content={topic.title ? topic.title : `${data.length} ${topic.name} Interview Questions`}
           key="title"
         />
       </Head>
       <div className="questions">
         <div className="question__header">
-          <h2>
-            {data.length} {topic} interview Questions
-          </h2>
+          
+          
+
+          
+          {topic?.image && 
+          <Image
+          src={topic?.image}
+          alt="Header image"
+          height={400}
+          width={600}
+          />
+          }
+
+<h1>
+            {topic.title ? (
+              topic.title
+            ):
+            (`${data.length} ${topic.name} interview Questions`)
+          } 
+          </h1>
+
+          <p>
+            {topic?.topDescription}
+          </p>
+          
         </div>
         <span className="line" />
 
@@ -68,7 +110,6 @@ const Questions = ({ data, topic }: QuestionProps) => {
                     }
                   })()}
                 </div>
-                <Important value={item.important} />
               </div>
             </div>
 

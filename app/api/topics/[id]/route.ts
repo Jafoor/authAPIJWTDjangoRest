@@ -11,9 +11,9 @@ type TopicsProps = {
 };
 
 export async function POST(request: any) {
-  const { name, topic } = await request.json();
+  const { name, topic, title, shortDescription, topDescription, keywords, image } = await request.json();
   await connectMongo();
-  await SubTopics.create({ name, topic });
+  await SubTopics.create({ name, topic, title, shortDescription, topDescription, keywords, image });
   return NextResponse.json({ message: "Sub Topic Created" }, { status: 201 });
 }
 

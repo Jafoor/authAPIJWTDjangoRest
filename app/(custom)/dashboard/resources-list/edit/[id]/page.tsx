@@ -14,7 +14,10 @@ type Category = {
     topic: string;
   };
 
-const FormComponent = () => {
+const FormComponent = ({ params }: { params: { id: string } }) => {
+
+  const {id} = params;
+
     const {data: session} = useSession();
     const router = useRouter();
   const [formData, setFormData] = useState({
@@ -40,8 +43,41 @@ const FormComponent = () => {
       const res = await data.json();
       setCategory(res);
     }
+
+    async function getResource() {
+        const data = await fetch(`${APP_URI}/api/resource/${id}`);
+        const resource = await data.json();
+        const res = resource.resources;
+        setFormData( {
+          ...formData,
+          user: res.user || '',
+          title: res.title || '',
+          shortDescription: res.shortDescription || '',
+          keywords: res.keywords || '',
+          image: res.image || '',
+          description: res.description || '',
+          isPublished: res.isPublished || false,
+          topNews: res.topNews || false,
+          topOthers: res.topOthers || false,
+          tag: res.tag || '',
+          popular: res.popular || false,
+          category: res.category || '',
+          categoryName: res.categoryName || ''
+        });
+        console.log(formData);
+        
+      }
+      getResource();
+
     getCategory();
   }, []);
+
+//   useEffect(() => {
+
+    
+//   }, [id]);
+
+
 
   const onValueChangeEditor = (name:string, value:string) => {
     setFormData((prevFormData) => ({
@@ -65,8 +101,8 @@ const FormComponent = () => {
     try {
         if(formData.category && formData.title && formData.shortDescription){
             formData.user = session?.user?.email as string;
-            const res = await fetch(`${APP_URI}/api/resource`, {
-                method: "POST",
+            const res = await fetch(`${APP_URI}/api/resource/${id}`, {
+                method: "PUT",
                 headers: {
                   "Content-type": "application/json",
                 },
@@ -76,18 +112,17 @@ const FormComponent = () => {
               if (res.ok) {
                 router.push("/dashboard");
               } else {
-                throw new Error("Failed to create a topic");
+                throw new Error("Failed to Update resource");
               }
         }
       
     } catch (error) {
       console.log(error);
     }
-    
-    console.log(formData);
   };
 
   return (
+    
     <form onSubmit={handleSubmit}>
 
       <div className="mb-4">
@@ -97,17 +132,6 @@ const FormComponent = () => {
 
       <div className="mb-4">
         <label htmlFor="shortDescription" className="block text-gray-700 text-sm font-bold mb-2">Short Description</label>
-        {/* <SunTextEditor
-          setOptionsType="admin"
-          defaultValue=
-            {formData.shortDescription}
-          
-          height="400px"
-          placeholder="Resources..."
-          onValueChange={(val) =>
-            onValueChangeEditor('shortDescription', val)
-          }
-          /> */}
         <input type="text" id="shortDescription" name="shortDescription" value={formData.shortDescription} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
 
@@ -121,12 +145,13 @@ const FormComponent = () => {
         <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
 
-      <div className="mb-4">
+          {formData.description ? (
+            <div className="mb-4">
         <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">Description</label>
         <SunTextEditor
           setOptionsType="main-admin"
           defaultValue=
-            {formData.description}
+            {formData.description ? formData.description : ""}
           
           height="400px"
           placeholder="Resources..."
@@ -136,6 +161,8 @@ const FormComponent = () => {
           />
         {/* <textarea id="description" name="description" value={formData.description} onChange={handleChange} rows={4} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea> */}
       </div>
+          ): null}
+      
 
       <div className="mb-4">
         <label htmlFor="isPublished" className="block text-gray-700 text-sm font-bold mb-2">Is Published</label>

@@ -40,9 +40,12 @@ pre{
   white-space: pre-wrap; 
   word-break: break-word;
   max-height: 500px;
-  background: #c2c2c3;
+  background: #000000;
+  color: white;
+  font-weight: 500;
   overflow: auto;
   padding: 10px 20px;
+  margin: 10px 0px;
 }
 
 footer {

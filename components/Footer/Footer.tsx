@@ -9,11 +9,7 @@ const Footer = () => {
         <div className="flex flex-wrap">
           <div className="w-full lg:w-2/5">
             <p className="text-gray-600 hidden lg:block p-0 lg:pr-12">
-              Boisterous he on understood attachment as entreaties ye
-              devonshire. In mile an form snug were been sell. Extremely ham any
-              his departure for contained curiosity defective. Way now
-              instrument had eat diminution melancholy expression sentiments
-              stimulated.
+            Unlock the Secrets of Success: Explore a comprehensive collection of programmer interview questions covering diverse topics. Enhance your skills and excel in coding interviews with our expert insights.
             </p>
           </div>
 

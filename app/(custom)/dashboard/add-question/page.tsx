@@ -37,9 +37,7 @@ const Page = () => {
 
     useEffect(() => {
       async function getTopics() {
-        const data = await fetch(`${APP_URI}/api/topics`, {
-          cache: "no-store",
-        });
+        const data = await fetch(`${APP_URI}/api/topics`);
         const res = await data.json();
         setTopics(res);
       }
@@ -48,9 +46,7 @@ const Page = () => {
 
     useEffect( () => {
         async function getSubTopics() {
-          const data = await fetch(`${APP_URI}/api/topics/${topic}`, {
-            cache: "no-store",
-          });
+          const data = await fetch(`${APP_URI}/api/topics/${topic}`);
           const res = await data.json();
           setSubTopics(res.topics)
         }
@@ -89,7 +85,7 @@ const Page = () => {
     <form onSubmit={handleSubmit} className="w-full m-auto flex flex-col gap-3">
 
     <div className="topics_selection">
-        <div className="selection">
+        {/* <div className="selection">
             <h1>Select Topics</h1>
           <ul className="tabList">
             {topics.map((item) => (
@@ -102,11 +98,31 @@ const Page = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
+
+        <div className="mb-4">
+        <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">Category</label>
+        <select id="category" name="category" value={topic} onChange={(e) => setTopic(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <option value="">Select a Topic</option>
+          { topics.map( (item) => (
+            <option key={item._id} value={item._id}>{item.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">Sub Category</label>
+        <select id="category" name="category" value={subTopic} onChange={(e) => setSubTopic(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <option value="">Select a Sub Topic</option>
+          { subTopics.map( (item) => (
+            <option key={item._id} value={item._id}>{item.name}</option>
+          ))}
+        </select>
+      </div>
 
 
 
-        <div className="item__details">
+        {/* <div className="item__details">
           <ul className="item_list">
             
             {subTopics.map(item => (
@@ -114,7 +130,7 @@ const Page = () => {
             ))}
             
           </ul>
-        </div>
+        </div> */}
 
       </div>
 
@@ -127,7 +143,7 @@ const Page = () => {
             Question
           </label>
           <SunTextEditor
-          setOptionsType="admin"
+          setOptionsType="main-admin"
           defaultValue={
             question
           }
@@ -148,7 +164,7 @@ const Page = () => {
           </label>
 
           <SunTextEditor
-          setOptionsType="admin"
+          setOptionsType="main-admin"
           defaultValue={
             answer
           }
