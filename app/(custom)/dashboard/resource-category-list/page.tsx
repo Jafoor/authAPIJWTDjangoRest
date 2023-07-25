@@ -2,50 +2,42 @@
 
 import React, { useEffect, useState } from 'react'
 
-import ShowModal from './Modal';
+// import ShowModal from './Modal';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+import ShowModal from './Modal';
 
 const APP_URI = process.env.APP_URI;
 
-type SubTopic = {
+type ResourceCat = {
     _id:string,
-    title?: string,
     name?: string,
-    topDescription?: string,
-    shortDescription?: string,
-    keywords?: string,
+    description?: string,
     image?: string,
     createdAt?: string
-    topic?: string
 }
 
 const Page = () => {
 
-    const [subtopics, setSubtopics] = useState<SubTopic[]>([]);
+    const [resourceCat, setResourceCat] = useState<ResourceCat[]>([]);
     const route = useRouter();
 
     useEffect(() => {
 
-        async function getSubTopics() {
+        async function getResourceCat() {
             try {
-                const data = await fetch(`${APP_URI}/api/subtopics`);
+                const data = await fetch(`${APP_URI}/api/resource-category`);
                 const res = await data.json();
-                setSubtopics(res.topics);
+                
+                setResourceCat(res);
               } catch (error) {
                 console.log(error);
               }
         }
-        getSubTopics();
+        getResourceCat();
     },[])
 
-    const handleDelete = async (id: string) => {
-        try {
-            await fetch(`${APP_URI}/api/subtopics/${id}`, {method: "DELETE"});
-            route.push("/dashboard");
-          } catch (error) {
-            console.log(error);
-          }
-    }
   return (
     
 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -56,9 +48,6 @@ const Page = () => {
                     Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    title
-                </th>
-                <th scope="col" className="px-6 py-3">
                     Time
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -67,25 +56,26 @@ const Page = () => {
             </tr>
         </thead>
         <tbody>
-            { subtopics.map((item) => (
+            { resourceCat.map((item) => (
                 <tr key={item._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {item.name}
                 </th>
-                <td className="px-6 py-4">
-                    {item.title}
-                </td>
+             
+                
                 <td className="px-6 py-4">
                 {item.createdAt &&
                 new Date(item.createdAt).toLocaleString()
                 }
                 </td>
+
                 <td className="px-6 py-4 text-right">
                     <ShowModal
-                     deleteBtn={() => handleDelete(item._id)}
                      data={item}
                     />
                 </td>
+
             </tr>
             ))}
             

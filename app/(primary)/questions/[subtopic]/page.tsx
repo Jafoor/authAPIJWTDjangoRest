@@ -3,7 +3,6 @@ import Questions from "@/components/Questions/Questions";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { getSubTopicQuestion, getSubTopicDetails, getAllSubTopic } from "@/app/utils/dataFetch";
-const APP_URI = process.env.APP_URI;
 
 type Question = {
   _id: string;
@@ -40,16 +39,6 @@ export async function generateMetadata(
       description: "The page you are looking for does not exist.",
     };
   }
-}
-
-export async function generateStaticParams() {
-  const subTopics = await getAllSubTopic();
-
-  if (!subTopics) return [];
-
-  return subTopics.map((item: any) => ({
-    params: {subtopic : item._id.toString()}
-  }));
 }
 
 const Question = async ({ params }: { params: { subtopic: string } }) => {

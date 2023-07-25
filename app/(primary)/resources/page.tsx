@@ -3,9 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getAllResource } from "@/app/utils/resourceDataFetch";
-
-
+import { getAllResource, getAllCategory } from "@/app/utils/resourceDataFetch";
 
 export const metadata: Metadata = {
   title: "Resources | Quick Dev Interview Preparation",
@@ -13,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 type FormDataType = {
-  _id: string,
+  _id: string;
   user: string;
   title: string;
   shortDescription: string;
@@ -29,246 +27,313 @@ type FormDataType = {
 };
 
 type propsType = {
-  resources: FormDataType[]
-}
+  resources: FormDataType[];
+};
 
 const page = async () => {
   const resources = await getAllResource();
+  const category = await getAllCategory();
   const recent: FormDataType[] = [];
   const popular: FormDataType[] = [];
   const top: FormDataType[] = [];
-  let main = { _id: '',
-  user: '',
-  title: '',
-  shortDescription: '',
-  image: '',
-  description: '',
-  isPublished: false,
-  topNews: false,
-  topOthers: false,
-  tag: '',
-  popular: false,
-  category: '',
-  categoryName: ''};
+  let main = {
+    _id: "",
+    user: "",
+    title: "",
+    shortDescription: "",
+    image: "",
+    description: "",
+    isPublished: false,
+    topNews: false,
+    topOthers: false,
+    tag: "",
+    popular: false,
+    category: "",
+    categoryName: "",
+  };
 
-  if(resources){
-    resources.forEach( (item, index) => {
-      if(index < 3){
+  if (resources) {
+    resources.forEach((item, index) => {
+      if (index < 3) {
         recent.push(item);
       }
-      if(item.popular){
+      if (item.popular) {
         popular.push(item);
       }
-      if(item.topNews){
+      if (item.topNews) {
         top.push(item);
       }
-      if(item.topNews){
+      if (item.topNews) {
         main = item;
       }
-    })
+    });
   }
-  
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="mt-12 ml-auto mr-auto w-full">
-        <h1 className="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Tech Toolbox: Your Gateway to Essential Tech Resources and Expert
-          Insights
-        </h1>
-        <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-          Discover a wealth of curated tech resources, tips, and insights to
-          empower your tech journey. Maximize productivity and embrace
-          innovation with Tech Toolbox.
-        </p>
-      </div>
-
-      <main className="mt-6">
-        <div className="flex items-start lg:flex-row flex-col gap-3 ">
-          <div className="self-start lg:w-7/12 mb-4 lg:mb-0 p-4 lg:p-0 rounded block">
-            { main?.image  ? (
-            <Image
-            src={main.image}
-            className="rounded-md object-cover w-full h-64"
-            alt={main.title}
-            width={400}
-            height={400}
-          />) : null
-          }
-            
-            <span className="text-green-700 text-sm hidden md:block mt-4">
-              {main.categoryName}
-            </span>
-            <h1 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">
-              {main.title}
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 pt-24 pb-10 mx-auto">
+          <div className="text-center mb-20">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">
+              Essential Tech Resources and Expert Insights
             </h1>
-            
-            <div
-                  className="text-gray-600 mb-4"
-                >
-                  <p>
-                  {main.shortDescription.slice(0,150)}
-                  </p>
-                </div>
-            
-            <Link
-              href="./blog.html"
-              className="inline-block px-6 py-3 mt-2 rounded-md bg-green-700 text-gray-100"
-            >
-              Read more
-            </Link>
+            <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">
+              Discover a wealth of curated tech resources, tips, and insights to
+              empower your tech journey. Maximize productivity and embrace
+              innovation with Tech Toolbox.
+            </p>
+            <div className="flex mt-6 justify-center">
+              <div className="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
+            </div>
           </div>
-
-          <div className="self-start lg:w-5/12">
-            <div className="flex flex-col gap-3">
-
-              { top.map((item) => (
-                <div className="flex flex-row rounded mb-10" key={item._id}>
-                  { item?.image ? (
-                <Image
-                  src={item.image}
-                  className="block md:hidden lg:block rounded-md h-64 md:h-32 m-4 md:m-0"
-                  alt={item.title}
-                  width={200}
-            height={200}
-                />
-                  ): null
-                  }
-                <div className="bg-white rounded px-4">
-                  <span className="text-green-700 text-sm hidden md:block">
-                    {item.categoryName}
-                  </span>
-                  <div className="md:mt-0 text-gray-800 font-semibold text-xl mb-2">
-                    {item.title}
-                  </div>
-                  <div className="block md:hidden p-2 pl-0 pt-1 text-sm text-gray-600">
-                    <p>
-                    {item.shortDescription.slice(0,150)}
-                    </p>
-                  </div>
+          <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+            {category.map((item) => (
+              <div
+                key={item._id}
+                className="p-4 md:w-1/3 flex flex-col text-center items-center"
+              >
+                <div className="w-8/12 sm:w-7/12 px-4 inline-flex items-center justify-center mb-5">
+                  <Image
+                    src={item.image}
+                    alt="Category Image"
+                    height={200}
+                    width={200}
+                    className="shadow-lg rounded-md max-w-full h-auto align-middle border-none"
+                  />
+                </div>
+                <div className="flex-grow">
+                  <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
+                    {item.name}
+                  </h2>
+                  <p className="leading-relaxed text-base">
+                    {item.description}
+                  </p>
+                  <a className="mt-3 text-indigo-500 inline-flex items-center">
+                    Learn More
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <main className="mt-6">
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-10 mx-auto">
+            <div className="flex flex-col">
+              <div className="h-1 bg-gray-200 rounded overflow-hidden">
+                <div className="w-24 h-full bg-indigo-500"></div>
+              </div>
+              <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+                <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
+                  Space The Final Frontier
+                </h1>
+                <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
+                  Street art subway tile salvia four dollar toast bitters
+                  selfies quinoa yuccie synth meditation iPhone intelligentsia
+                  prism tofu. Viral gochujang bitters dreamcatcher.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+              <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                <div className="rounded-lg h-64 overflow-hidden">
+                  {main?.image ? (
+                    <Image
+                      src={main.image}
+                      className="rounded-md object-cover w-full h-64"
+                      alt={main.title}
+                      width={300}
+                      height={300}
+                    />
+                  ) : null}
+                </div>
+                <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
+                  {main.title}
+                </h2>
+                <p className="text-base leading-relaxed mt-2">
+                  {main.shortDescription.slice(0, 150)}
+                </p>
+                <Link href={`/resources/blog/${main._id}`} className="text-indigo-500 inline-flex items-center mt-3">
+                  Learn More
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    className="w-4 h-4 ml-2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </Link>
+              </div>
+
+              {top.map((item) => (
+                <div key={item._id} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                  <div className="rounded-lg h-48 overflow-hidden">
+                    {item?.image ? (
+                      <Image
+                        src={item.image}
+                        className="block md:hidden lg:block rounded-md h-48 md:h-32 m-4 md:m-0"
+                        alt={item.title}
+                        width={300}
+                        height={300}
+                      />
+                    ) : null}
+                  </div>
+                  <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
+                    {item.title}
+                  </h2>
+                  <p className="text-base leading-relaxed mt-2">
+                    {item.shortDescription.slice(0, 150)}
+                  </p>
+                  <a className="text-indigo-500 inline-flex items-center mt-3">
+                    Learn More
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
               ))}
             </div>
           </div>
-        </div>
+        </section>
 
-
-
-
-        <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-          <h2 className="font-bold text-3xl">Latest news</h2>
-          <Link href="/" className="bg-gray-200 hover:bg-green-200 text-gray-800 px-3 py-1 rounded cursor-pointer">
-            View all
-          </Link>
-        </div>
-
-        
-          <div className="block space-x-0 lg:flex lg:space-x-6" >
-          { recent.map((item) => (
-          <div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0" key={item._id}>
-          { item?.image  ? (
-            <Image
-            src={item.image}
-            className="rounded-md object-cover w-full h-64"
-            alt={item.title}
-            width={200}
-            height={200}
-          />) : null
-          }
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                {item.title}
-              </h2>
-              <div className="text-gray-700 mt-2">
-              <p>
-                    {item.shortDescription.slice(0,150)}
-                    </p>
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-10 mx-auto">
+            <div className="flex flex-col">
+              <div className="h-1 bg-gray-200 rounded overflow-hidden">
+                <div className="w-24 h-full bg-indigo-500"></div>
               </div>
-
-              <Link
-                href={`/resource/${item._id}`}
-                className="inline-block py-2 rounded text-green-900 mt-2 ml-auto"
-              >
-                {" "}
-                Read more{" "}
-              </Link>
+              <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+                <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
+                  Space The Final Frontier
+                </h1>
+                <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
+                  Street art subway tile salvia four dollar toast bitters
+                  selfies quinoa yuccie synth meditation iPhone intelligentsia
+                  prism tofu. Viral gochujang bitters dreamcatcher.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+              {recent.map((item) => (
+                <div key={item._id} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                  <div className="rounded-lg h-48 overflow-hidden">
+                    {item?.image ? (
+                      <Image
+                        src={item.image}
+                        className="block md:hidden lg:block rounded-md h-48 md:h-32 m-4 md:m-0"
+                        alt={item.title}
+                        width={300}
+                        height={300}
+                      />
+                    ) : null}
+                  </div>
+                  <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
+                    {item.title}
+                  </h2>
+                  <p className="text-base leading-relaxed mt-2">
+                    {item.shortDescription.slice(0, 150)}
+                  </p>
+                  <a className="text-indigo-500 inline-flex items-center mt-3">
+                    Learn More
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
-          ))}
-        </div>
-        
-        
+        </section>
 
-        <div className="rounded flex md:shadow mt-12">
-          <img
-            src="https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-            className="w-0 md:w-1/4 object-cover rounded-l"
-          />
-          <div className="px-4 py-2">
-            <h3 className="text-3xl text-gray-800 font-bold">
-              Subscribe to newsletter
-            </h3>
-            <p className="text-xl text-gray-700">
-              We sent latest news and posts once in every week, fresh from the
-              oven
-            </p>
-            <form className="mt-4 mb-10">
-              <input
-                type="email"
-                className="rounded bg-gray-100 px-4 py-2 border focus:border-green-400"
-                placeholder="john@tech.com"
-              />
-              <button className="px-4 py-2 rounded bg-green-800 text-gray-100">
-                Subscribe
-                <i className="bx bx-right-arrow-alt"></i>
-              </button>
-              <p className="text-green-900 opacity-50 text-sm mt-1">
-                No spam. We promise
-              </p>
-            </form>
-          </div>
-        </div>
-
-        <div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
-          <h2 className="font-bold text-3xl">Popular news</h2>
-          <Link href="#" className="bg-gray-200 hover:bg-green-200 text-gray-800 px-3 py-1 rounded cursor-pointer">
-            View all
-          </Link>
-        </div>
-        <div className="block space-x-0 lg:flex lg:space-x-6" >
-          { popular.map((item) => (
-          <div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0" key={item._id}>
-          { item?.image  ? (
-            <Image
-            src={item.image}
-            className="rounded-md object-cover w-full h-64"
-            alt={item.title}
-            width={200}
-            height={200}
-          />) : null
-          }
-            <div className="p-4 pl-0">
-              <h2 className="font-bold text-2xl text-gray-800">
-                {item.title}
-              </h2>
-              <div className="text-gray-700 mt-2">
-              <p>
-                    {item.shortDescription.slice(0,150)}
-                    </p>
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-10 mx-auto">
+            <div className="flex flex-col">
+              <div className="h-1 bg-gray-200 rounded overflow-hidden">
+                <div className="w-24 h-full bg-indigo-500"></div>
               </div>
-
-              <Link
-                href={`/resource/${item._id}`}
-                className="inline-block py-2 rounded text-green-900 mt-2 ml-auto"
-              >
-                {" "}
-                Read more{" "}
-              </Link>
+              <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+                <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
+                  Space The Final Frontier
+                </h1>
+                <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
+                  Street art subway tile salvia four dollar toast bitters
+                  selfies quinoa yuccie synth meditation iPhone intelligentsia
+                  prism tofu. Viral gochujang bitters dreamcatcher.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+              {popular.map((item) => (
+                <div key={item._id} className="p-4 md:w-1/3 sm:mb-0 mb-6">
+                  <div className="rounded-lg h-48 overflow-hidden">
+                    {item?.image ? (
+                      <Image
+                        src={item.image}
+                        className="block md:hidden lg:block rounded-md h-48 md:h-32 m-4 md:m-0"
+                        alt={item.title}
+                        width={300}
+                        height={300}
+                      />
+                    ) : null}
+                  </div>
+                  <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
+                    {item.title}
+                  </h2>
+                  <p className="text-base leading-relaxed mt-2">
+                    {item.shortDescription.slice(0, 150)}
+                  </p>
+                  <a className="text-indigo-500 inline-flex items-center mt-3">
+                    Learn More
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
-          ))}
-        </div>
+        </section>
       </main>
     </div>
   );
