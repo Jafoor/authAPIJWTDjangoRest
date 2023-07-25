@@ -7,6 +7,7 @@ import { getSubTopicQuestion, getSubTopicDetails, getAllSubTopic } from "@/app/u
 import Image from "next/image";
 import Link from "next/link";
 
+import "suneditor/dist/css/suneditor.min.css";
 import "./page.scss";
 
 const author = process.env.AUTHOR_IMAGE;

@@ -63,7 +63,7 @@ export async function createResource(data: FormData) {
 
   export async function getAllResource() {
     await connectMongo();
-    const resource = await Resource.find();  
+    const resource = await Resource.find({}, {description: 0, __v: 0}).sort({ createdAt: -1 });
     return resource;
 }
 
