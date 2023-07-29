@@ -7,19 +7,18 @@ export default async function sitemap() {
   // Get All Posts from CMS
   const subTopics = await getAllSubTopic();
   const subTopicsQuestions =
-  subTopics?.map((item: any) => {
+    subTopics?.map((item: any) => {
       return {
         url: `${baseUrl}/questions/${item._id}`,
-        lastModified: new Date(),
+        lastModified: new Date()
       };
     }) ?? [];
-
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: new Date()
     },
-    ...subTopicsQuestions,
+    ...subTopicsQuestions
   ];
 }

@@ -1,127 +1,79 @@
 import React from "react";
-
-const page = () => {
+import {
+  getCategoryDetails,
+  getResourcesByCategory
+} from "@/app/utils/resourceDataFetch";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+const page = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+  let category;
+  let posts;
+  try {
+    category = await getCategoryDetails(id);
+    console.log({ category });
+    if (category === null || category === undefined) {
+      throw "not found";
+    }
+    posts = await getResourcesByCategory(id);
+    if (posts === null || posts === undefined) {
+      throw "not found";
+    }
+  } catch (err) {
+    notFound();
+  }
   return (
-    <section className="text-gray-600 body-font overflow-hidden">
+    <section className="text-gray-600 body-font overflow-hidden max-w-screen-lg m-auto">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
-          <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
-            ROOF PARTY POLAROID
-          </h2>
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-            Master Cleanse Reliac Heirloom
+            {category.name}
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            haven&apos;t heard of them man bun deep jianbing selfies heirloom prism
-            food truck ugh squid celiac humblebrag.
+            {category.description}
           </p>
         </div>
 
         <div className="-my-8 divide-y-2 divide-gray-100">
-          <div className="py-8 flex flex-wrap md:flex-nowrap">
-            <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-              <span className="font-semibold title-font text-gray-700">
-                CATEGORY
-              </span>
-              <span className="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
-            </div>
-            <div className="md:flex-grow">
-              <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                Bitters hashtag waistcoat fashion axe chia unicorn
-              </h2>
-              <p className="leading-relaxed">
-                Glossier echo park pug, church-key sartorial biodiesel
-                vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon
-                party messenger bag selfies, poke vaporware kombucha
-                lumbersexual pork belly polaroid hoodie portland craft beer.
-              </p>
-              <a className="text-indigo-500 inline-flex items-center mt-4">
-                Learn More
-                <svg
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+          {posts.map((item) => (
+            <div key={item._id} className="py-8 flex flex-wrap md:flex-nowrap">
+              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <span className="font-semibold title-font text-gray-700">
+                  {item.tag}
+                </span>
+                <span className="mt-1 text-gray-500 text-sm">
+                  {item.createdAt &&
+                    new Date(item.createdAt).toLocaleDateString()}
+                </span>
+              </div>
+              <div className="md:flex-grow">
+                <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
+                  {item.title}
+                </h2>
+                <p className="leading-relaxed">
+                  {item.shortDescription.slice(0, 160)}
+                </p>
+                <Link
+                  href={`/resources/details/${item._id}`}
+                  className="text-indigo-500 inline-flex items-center mt-4"
                 >
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
+                  Learn More
+                  <svg
+                    className="w-4 h-4 ml-2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="py-8 flex flex-wrap md:flex-nowrap">
-            <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-              <span className="font-semibold title-font text-gray-700">
-                CATEGORY
-              </span>
-              <span className="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
-            </div>
-            <div className="md:flex-grow">
-              <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                Meditation bushwick direct trade taxidermy shaman
-              </h2>
-              <p className="leading-relaxed">
-                Glossier echo park pug, church-key sartorial biodiesel
-                vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon
-                party messenger bag selfies, poke vaporware kombucha
-                lumbersexual pork belly polaroid hoodie portland craft beer.
-              </p>
-              <a className="text-indigo-500 inline-flex items-center mt-4">
-                Learn More
-                <svg
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
-          <div className="py-8 flex flex-wrap md:flex-nowrap">
-            <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-              <span className="font-semibold title-font text-gray-700">
-                CATEGORY
-              </span>
-              <span className="text-sm text-gray-500">12 Jun 2019</span>
-            </div>
-            <div className="md:flex-grow">
-              <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                Woke master cleanse drinking vinegar salvia
-              </h2>
-              <p className="leading-relaxed">
-                Glossier echo park pug, church-key sartorial biodiesel
-                vexillologist pop-up snackwave ramps cornhole. Marfa 3 wolf moon
-                party messenger bag selfies, poke vaporware kombucha
-                lumbersexual pork belly polaroid hoodie portland craft beer.
-              </p>
-              <a className="text-indigo-500 inline-flex items-center mt-4">
-                Learn More
-                <svg
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

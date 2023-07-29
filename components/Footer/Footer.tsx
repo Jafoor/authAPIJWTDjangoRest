@@ -9,7 +9,10 @@ const Footer = () => {
         <div className="flex flex-wrap">
           <div className="w-full lg:w-2/5">
             <p className="text-gray-600 hidden lg:block p-0 lg:pr-12">
-            Unlock the Secrets of Success: Explore a comprehensive collection of programmer interview questions covering diverse topics. Enhance your skills and excel in coding interviews with our expert insights.
+              Unlock the Secrets of Success: Explore a comprehensive collection
+              of programmer interview questions covering diverse topics. Enhance
+              your skills and excel in coding interviews with our expert
+              insights.
             </p>
           </div>
 
@@ -17,22 +20,25 @@ const Footer = () => {
             <h6 className="font-semibold text-gray-700 mb-4">Company</h6>
             <ul>
               <li>
-                {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Team
-                </Link>{" "}
+                <Link href={"/contact-us"} className="block text-gray-600 py-2">
+                  Contact Us
+                </Link>
               </li>
               <li>
-                {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  About us
-                </Link>{" "}
+                <Link
+                  href="/privacy-policy"
+                  className="block text-gray-600 py-2"
+                >
+                  Privacy Policy
+                </Link>
               </li>
               <li>
-                {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Press
-                </Link>{" "}
+                <Link
+                  href="/terms-conditions"
+                  className="block text-gray-600 py-2"
+                >
+                  Terms and Conditions
+                </Link>
               </li>
             </ul>
           </div>
@@ -41,16 +47,14 @@ const Footer = () => {
             <h6 className="font-semibold text-gray-700 mb-4">Content</h6>
             <ul>
               <li>
-                {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Blog
-                </Link>{" "}
+                <Link href="/resources" className="block text-gray-600 py-2">
+                  Resources
+                </Link>
               </li>
               <li>
-                {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Privacy Policy
-                </Link>{" "}
+                <Link href="/questions" className="block text-gray-600 py-2">
+                  Questions
+                </Link>
               </li>
               <li>
                 {" "}

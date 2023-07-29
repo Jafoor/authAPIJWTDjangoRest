@@ -5,10 +5,10 @@ const ContactSchema = new Schema(
     email: String,
     name: String,
     subject: String,
-    message: String,
+    message: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 

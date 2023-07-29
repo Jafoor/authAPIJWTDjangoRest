@@ -10,11 +10,10 @@ type ContactProps = {
   params: ContactParams;
 };
 
-
 export async function DELETE(request: any, { params }: ContactProps) {
-    const { id } = params;
-    await connectMongo();
-    await Contact.deleteOne({ _id: id });
-    
-    return NextResponse.json({ message: "Deleted" }, { status: 200 });
-  }
+  const { id } = params;
+  await connectMongo();
+  await Contact.deleteOne({ _id: id });
+
+  return NextResponse.json({ message: "Deleted" }, { status: 200 });
+}

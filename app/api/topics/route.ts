@@ -12,7 +12,7 @@ export async function POST(request: any) {
 export async function GET() {
   await connectMongo();
   const topics = await Topics.find();
-  return new Response(JSON.stringify(topics), {status: 200})
+  return new Response(JSON.stringify(topics), { status: 200 });
 }
 
 // export async function DELETE(request) {

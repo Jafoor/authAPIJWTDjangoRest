@@ -22,7 +22,7 @@ const ShowModal = ({ data }: ShowProps) => {
   const [formData, setFormData] = useState({
     name: data.name,
     description: data.description,
-    image: data.image,
+    image: data.image
   });
 
   const route = useRouter();
@@ -31,19 +31,18 @@ const ShowModal = ({ data }: ShowProps) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: value
     }));
   };
 
   const handleSubmit = async () => {
-
     try {
       await fetch(`${APP_URI}/api/resource-category/${data._id}`, {
         method: "PUT",
         headers: {
-          "Content-type": "application/json",
+          "Content-type": "application/json"
         },
-        body: JSON.stringify({ data: formData }),
+        body: JSON.stringify({ data: formData })
       });
       route.push("/dashboard");
     } catch (error) {
@@ -71,53 +70,51 @@ const ShowModal = ({ data }: ShowProps) => {
           <Modal.Header>Message Details</Modal.Header>
 
           <Modal.Body>
-          <div className="space-y-6">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sub Topic Updated</h3>
+            <div className="space-y-6">
+              <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                Sub Topic Updated
+              </h3>
 
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="name" value="Name" />
-              </div>
-              <TextInput
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="name" value="Name" />
+                </div>
+                <TextInput
                   id="name"
-                  
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="description" value="description" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="description" value="description" />
+                </div>
+                <TextInput
                   id="description"
-                  
                   type="text"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="image" value="image" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="image" value="image" />
+                </div>
+                <TextInput
                   id="image"
-                  
                   type="text"
                   name="image"
                   value={formData.image}
                   onChange={handleChange}
                 />
+              </div>
             </div>
-
-          </div>
-        </Modal.Body>
+          </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => setOpen(false)}>OK</Button>
             <Button onClick={handleSubmit}>UPDATE</Button>

@@ -7,10 +7,11 @@ const ResourceCategorySchema = new Schema(
     image: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
-const ResourceCategory = models.ResourceCategory || model("ResourceCategory", ResourceCategorySchema);
+const ResourceCategory =
+  models.ResourceCategory || model("ResourceCategory", ResourceCategorySchema);
 
 export default ResourceCategory;

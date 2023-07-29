@@ -22,7 +22,7 @@ const optionConfig = {
         "strike",
         "subscript",
         "superscript",
-        "removeFormat",
+        "removeFormat"
       ],
       "/",
       [
@@ -33,7 +33,7 @@ const optionConfig = {
         "align",
         "horizontalRule",
         "list",
-        "table",
+        "table"
       ],
       [
         "link",
@@ -44,9 +44,9 @@ const optionConfig = {
         "codeView",
         "preview",
         "print",
-        "save",
-      ],
-    ],
+        "save"
+      ]
+    ]
   },
   "main-admin": {
     resizingBar: true,
@@ -87,14 +87,14 @@ const optionConfig = {
         "preview",
         "print",
         "save",
-        "template",
-      ],
-    ],
-  },
+        "template"
+      ]
+    ]
+  }
 };
 
 const SunEditor = dynamic(() => import("suneditor-react"), {
-  ssr: false,
+  ssr: false
 });
 
 const SunTextEditor = ({
@@ -102,7 +102,7 @@ const SunTextEditor = ({
   placeholder,
   setOptionsType,
   onValueChange,
-  defaultValue,
+  defaultValue
 }: InputConfig) => {
   return (
     <div>

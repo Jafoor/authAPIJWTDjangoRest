@@ -2,8 +2,17 @@ import "./Loader.scss";
 
 const Loader = () => {
   return (
-<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-  )
-}
+    <div className="spinner">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;

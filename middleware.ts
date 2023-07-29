@@ -1,10 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getToken } from 'next-auth/jwt'
+import { getToken } from "next-auth/jwt";
 import { useSession } from "next-auth/react";
 
 export const middleware = async (req: NextRequest) => {
-    const secret = process.env.NEXTAUTH_SECRET
-    const token = await getToken({ req, secret });
+  const secret = process.env.NEXTAUTH_SECRET;
+  const token = await getToken({ req, secret });
 
   const { pathname } = req.nextUrl;
   if (pathname.startsWith("/dashboard")) {
@@ -16,5 +16,5 @@ export const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
 };

@@ -41,11 +41,10 @@ const Navbar = () => {
   return (
     <div className={header}>
       <Link href="/">
-      <div className="logoDiv">
-        <span className="logo">Quick Prep</span>
-      </div>
+        <div className="logoDiv">
+          <span className="logo">Quick Prep</span>
+        </div>
       </Link>
-      
 
       <div className={navbar}>
         <ul className="menu">
@@ -77,15 +76,17 @@ const Navbar = () => {
             src={session.user?.image as string}
             width={30}
             height={30}
-            alt={session.user?.name as string ?? "Profile Pic"}
+            alt={(session.user?.name as string) ?? "Profile Pic"}
             priority={true}
           />
           <div className="SignUp flex" onClick={() => signOut()}>
             <div className="text">Sign Out</div>
-            <TbGridDots onClick={showNavbar} className="icon toggleNavbarIcon" />
+            <TbGridDots
+              onClick={showNavbar}
+              className="icon toggleNavbarIcon"
+            />
           </div>
         </div>
-        
       ) : (
         <div className="SignUp flex" onClick={() => signIn()}>
           <div className="text">Sign In</div>

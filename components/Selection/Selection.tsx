@@ -44,29 +44,9 @@ const Selection = () => {
 
   return (
     <>
-      <div className="question__answer">
-        <Header />
-        {/* <div className="section_header">
-        <div className="text">
-          <h1>
-            <span className="part1">The fastest way to prepare</span>
-            <span className="part2"> for a tech interview </span>
-          </h1>
-          <p>
-            Check our curated list of full-stack, data structures & software
-            architecture interview questions and answers for developers
-          </p>
-        </div>
-
-        <div className="browse__button">
-          <button className="primaryBtn">Browse All the Questions</button>
-        </div>
-      </div> */}
-      </div>
-
       <div className="q_a_section">
         <h1>SELECT TOPIC</h1>
-        <p>Select a topic to get prepered for your next interview.</p>
+        <p>Select a topic to get prepared for your next interview.</p>
         <div className="selection">
           <ul className="tabList">
             {topics.map((item) => (

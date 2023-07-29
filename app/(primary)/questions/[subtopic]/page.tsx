@@ -2,7 +2,11 @@ import Questions from "@/components/Questions/Questions";
 
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
-import { getSubTopicQuestion, getSubTopicDetails, getAllSubTopic } from "@/app/utils/dataFetch";
+import {
+  getSubTopicQuestion,
+  getSubTopicDetails,
+  getAllSubTopic
+} from "@/app/utils/dataFetch";
 
 type Question = {
   _id: string;
@@ -28,15 +32,15 @@ export async function generateMetadata(
       title: `${res.name} Interview Questions`,
       description: `Discover a comprehensive collection of ${res.name} interview questions, ranging from easy to hard difficulty levels. This curated compilation includes answers to help you prepare for your next ${res.name} job interview. Expand your knowledge and gain confidence in tackling various aspects of ${res.name} development with this valuable resource`,
       alternates: {
-        canonical: `/questions/${res._id}`,
-      },
+        canonical: `/questions/${res._id}`
+      }
     };
   } catch (error) {
-    console.log({error});
-    
+    console.log({ error });
+
     return {
       title: "Not Found",
-      description: "The page you are looking for does not exist.",
+      description: "The page you are looking for does not exist."
     };
   }
 }
@@ -44,10 +48,10 @@ export async function generateMetadata(
 const Question = async ({ params }: { params: { subtopic: string } }) => {
   const { subtopic } = params;
   let questions, subTopic;
-  try{
+  try {
     questions = await getSubTopicQuestion(subtopic);
     subTopic = await getSubTopicDetails(subtopic);
-    }catch(error){
+  } catch (error) {
     notFound();
   }
 

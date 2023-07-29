@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
     "@types/node": "20.4.1",
@@ -35,6 +36,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/redux-logger": "^3.0.9"
+    "@types/redux-logger": "^3.0.9",
+    "prettier": "^3.0.0"
   }
 }

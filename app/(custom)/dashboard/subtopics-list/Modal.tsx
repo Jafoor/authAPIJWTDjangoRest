@@ -9,6 +9,7 @@ const APP_URI = process.env.APP_URI;
 type Contact = {
   _id?: string;
   title?: string;
+  slug?: string;
   name?: string;
   topDescription?: string;
   shortDescription?: string;
@@ -26,10 +27,11 @@ const ShowModal = ({ deleteBtn, data }: ShowProps) => {
   const [formData, setFormData] = useState({
     title: data.title,
     name: data.name,
+    slug: data?.slug || "",
     topDescription: data.topDescription,
     shortDescription: data.shortDescription,
     keywords: data.keywords,
-    image: data.image,
+    image: data.image
   });
 
   const route = useRouter();
@@ -38,19 +40,20 @@ const ShowModal = ({ deleteBtn, data }: ShowProps) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: value
     }));
   };
 
   const handleSubmit = async () => {
-
     try {
+      console.log(formData);
+
       await fetch(`${APP_URI}/api/subtopics/${data._id}`, {
         method: "PUT",
         headers: {
-          "Content-type": "application/json",
+          "Content-type": "application/json"
         },
-        body: JSON.stringify({ data: formData }),
+        body: JSON.stringify({ data: formData })
       });
       route.push("/dashboard");
     } catch (error) {
@@ -78,95 +81,103 @@ const ShowModal = ({ deleteBtn, data }: ShowProps) => {
           <Modal.Header>Message Details</Modal.Header>
 
           <Modal.Body>
-          <div className="space-y-6">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sub Topic Updated</h3>
-            
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="title" value="Title" />
-              </div>
-              <TextInput
+            <div className="space-y-6">
+              <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                Sub Topic Updated
+              </h3>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="title" value="Title" />
+                </div>
+                <TextInput
                   id="title"
-                  
                   type="text"
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="name" value="Name" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="slug" value="Slug" />
+                </div>
+                <TextInput
+                  id="slug"
+                  type="text"
+                  name="slug"
+                  value={formData.slug}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="name" value="Name" />
+                </div>
+                <TextInput
                   id="name"
-                  
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="topDescription" value="topDescription" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="topDescription" value="topDescription" />
+                </div>
+                <TextInput
                   id="topDescription"
-                  
                   type="text"
                   name="topDescription"
                   value={formData.topDescription}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="shortDescription" value="shortDescription" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="shortDescription" value="shortDescription" />
+                </div>
+                <TextInput
                   id="shortDescription"
-                  
                   type="text"
                   name="shortDescription"
                   value={formData.shortDescription}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="keywords" value="keywords" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="keywords" value="keywords" />
+                </div>
+                <TextInput
                   id="keywords"
-                  
                   type="text"
                   name="keywords"
                   value={formData.keywords}
                   onChange={handleChange}
                 />
-            </div>
-
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="image" value="image" />
               </div>
-              <TextInput
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="image" value="image" />
+                </div>
+                <TextInput
                   id="image"
-                  
                   type="text"
                   name="image"
                   value={formData.image}
                   onChange={handleChange}
                 />
+              </div>
             </div>
-
-          </div>
-        </Modal.Body>
+          </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => setOpen(false)}>OK</Button>
             <Button onClick={handleSubmit}>UPDATE</Button>

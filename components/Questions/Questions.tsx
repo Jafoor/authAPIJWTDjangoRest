@@ -41,46 +41,37 @@ const Questions = ({ data, topic }: QuestionProps) => {
         {topic.title ? (
           <title>{topic.title}</title>
         ) : (
-<title>{`${data.length} ${topic.name} Interview Questions`}</title>
-        )
-        
-      }
-        
+          <title>{`${data.length} ${topic.name} Interview Questions`}</title>
+        )}
 
         <meta
           property="og:title"
-          
-          content={topic.title ? topic.title : `${data.length} ${topic.name} Interview Questions`}
+          content={
+            topic.title
+              ? topic.title
+              : `${data.length} ${topic.name} Interview Questions`
+          }
           key="title"
         />
       </Head>
       <div className="questions">
         <div className="question__header">
-          
-          
+          {topic?.image && (
+            <Image
+              src={topic?.image}
+              alt="Header image"
+              height={400}
+              width={600}
+            />
+          )}
 
-          
-          {topic?.image && 
-          <Image
-          src={topic?.image}
-          alt="Header image"
-          height={400}
-          width={600}
-          />
-          }
-
-<h1>
-            {topic.title ? (
-              topic.title
-            ):
-            (`${data.length} ${topic.name} interview Questions`)
-          } 
+          <h1>
+            {topic.title
+              ? topic.title
+              : `${data.length} ${topic.name} interview Questions`}
           </h1>
 
-          <p>
-            {topic?.topDescription}
-          </p>
-          
+          <p>{topic?.topDescription}</p>
         </div>
         <span className="line" />
 

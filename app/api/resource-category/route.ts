@@ -10,7 +10,7 @@ export async function POST(request: any) {
 }
 
 export async function GET() {
-    await connectMongo();
-    const categories = await ResourceCategory.find();
-    return new Response(JSON.stringify(categories), {status: 200})
-  }
+  await connectMongo();
+  const categories = await ResourceCategory.find();
+  return new Response(JSON.stringify(categories), { status: 200 });
+}

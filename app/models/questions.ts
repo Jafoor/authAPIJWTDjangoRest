@@ -3,6 +3,7 @@ import { Schema, model, models } from "mongoose";
 const QuestionsSchema = new Schema(
   {
     user: String,
+    slug: String,
     question: String,
     answer: String,
     level: Number,
@@ -10,15 +11,15 @@ const QuestionsSchema = new Schema(
     isPublished: Boolean,
     topic: {
       type: Schema.Types.ObjectId,
-      ref: "Topics",
+      ref: "Topics"
     },
     subTopic: {
       type: Schema.Types.ObjectId,
-      ref: "SubTopics",
-    },
+      ref: "SubTopics"
+    }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 

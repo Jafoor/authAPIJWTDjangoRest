@@ -3,7 +3,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import React from "react";
 
 export default function CustomLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {

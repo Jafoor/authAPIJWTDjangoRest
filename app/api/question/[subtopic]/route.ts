@@ -3,18 +3,18 @@ import Questions from "@/app/models/questions";
 import { NextResponse } from "next/server";
 
 type QuestionParams = {
-    subtopic: string;
-  };
-  
-  type QuestionsProps = {
-    params: QuestionParams;
-  };
+  subtopic: string;
+};
+
+type QuestionsProps = {
+  params: QuestionParams;
+};
 
 export async function GET(request: any, { params }: QuestionsProps) {
   const { subtopic } = params;
   await connectMongo();
-  const questions = await Questions.find({subTopic: subtopic});
-  return new Response(JSON.stringify(questions), {status: 200})
+  const questions = await Questions.find({ subTopic: subtopic });
+  return new Response(JSON.stringify(questions), { status: 200 });
 }
 
 // export async function DELETE(request) {

@@ -15,12 +15,12 @@ const ResourceSchema = new Schema(
     popular: Boolean,
     category: {
       type: Schema.Types.ObjectId,
-      ref: "ResourceCategory",
+      ref: "ResourceCategory"
     },
-    categoryName: String,
+    categoryName: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
