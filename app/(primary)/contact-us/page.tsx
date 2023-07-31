@@ -28,8 +28,6 @@ const ContactForm = () => {
   };
 
   const handleSubmit = async (e: any) => {
-    console.log(formData);
-
     e.preventDefault();
 
     try {

@@ -13,11 +13,9 @@ type TopicsProps = {
 export async function PUT(request: any, { params }: TopicsProps) {
   const { id } = params;
   const data = await request.json();
-  console.log(data);
 
   await connectMongo();
   const x = await SubTopics.findByIdAndUpdate(id, { ...data.data });
-  console.log(x);
 
   return NextResponse.json({ message: "Sub Topic updated" }, { status: 200 });
 }

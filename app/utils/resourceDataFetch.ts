@@ -2,6 +2,7 @@ const APP_URI = process.env.APP_URI;
 import connectMongo from "@/app/utils/connectMongo";
 import ResourceCategory from "@/app/models/resourceCategory";
 import Resource from "../models/resourcePost";
+import Blog from "../models/blogPost";
 
 type FormData = {
   id?: string;
@@ -37,7 +38,7 @@ export async function getAllCategory() {
 
 export async function getCategoryDetails(category: string) {
   await connectMongo();
-  const categoryDetails = await ResourceCategory.findOne({ _id: category });
+  const categoryDetails = await ResourceCategory.findOne({ slug: category });
   return categoryDetails;
 }
 
@@ -72,9 +73,9 @@ export async function getAllResource() {
   return resource;
 }
 
-export async function getResourceDetails(id: string) {
+export async function getResourceDetails(slug: string) {
   await connectMongo();
-  const resourceDetails = await Resource.findOne({ _id: id });
+  const resourceDetails = await Resource.findOne({ slug: slug });
   return resourceDetails;
 }
 
@@ -88,6 +89,12 @@ export async function getResourcesForHome() {
   await connectMongo();
   const resources = await Resource.find({ topOthers: true }).limit(2);
   return resources;
+}
+
+export async function getBlogsForHome() {
+  await connectMongo();
+  const blogs = await Blog.find({ topOthers: true}).limit(2);
+  return blogs;
 }
 
 export async function updateResourceDetails(data: FormData) {

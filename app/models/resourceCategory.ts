@@ -4,7 +4,11 @@ const ResourceCategorySchema = new Schema(
   {
     name: String,
     description: String,
-    image: String
+    image: String,
+    title: String,
+    slug: String,
+    topDescription: String,
+    keywords: String
   },
   {
     timestamps: true

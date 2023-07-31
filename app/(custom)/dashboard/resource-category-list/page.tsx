@@ -2,10 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-// import ShowModal from './Modal';
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-
 import ShowModal from "./Modal";
 
 const APP_URI = process.env.APP_URI;
@@ -15,12 +11,15 @@ type ResourceCat = {
   name?: string;
   description?: string;
   image?: string;
+  keywords?: string;
+  slug?: string;
+  topDescription?: string;
+  title?: string;
   createdAt?: string;
 };
 
 const Page = () => {
   const [resourceCat, setResourceCat] = useState<ResourceCat[]>([]);
-  const route = useRouter();
 
   useEffect(() => {
     async function getResourceCat() {

@@ -8,7 +8,6 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import "./Navbar1.scss";
-import Image from "next/image";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -25,10 +24,13 @@ const Navbar = () => {
             <Link href="/">HOME</Link>
           </li>
           <li>
-            <Link href="/resources">RESOURCES</Link>
+            <Link href="/resources">RESOURCE</Link>
           </li>
           <li>
-            <Link href="/questions">INTERVIEWS</Link>
+            <Link href="/blogs">BLOG</Link>
+          </li>
+          <li>
+            <Link href="/questions">INTERVIEW</Link>
           </li>
           {session && session.user?.isAdmin ? (
             <li>

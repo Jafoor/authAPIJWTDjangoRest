@@ -132,7 +132,7 @@ const Features = () => {
                 fulfillment.
               </p>
               <Link
-                href={"/resources"}
+                href={"/blogs"}
                 className="mt-3 text-indigo-500 inline-flex items-center"
               >
                 Learn More

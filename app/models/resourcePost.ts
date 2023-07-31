@@ -13,6 +13,7 @@ const ResourceSchema = new Schema(
     topOthers: Boolean,
     tag: String,
     popular: Boolean,
+    slug: String,
     category: {
       type: Schema.Types.ObjectId,
       ref: "ResourceCategory"

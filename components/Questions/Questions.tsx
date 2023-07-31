@@ -1,12 +1,9 @@
 import React from "react";
-// import { IoIosCloseCircle } from "react-icons/io";
-// import { AiFillCheckCircle } from "react-icons/ai";
-import "suneditor/dist/css/suneditor.min.css";
-// import Important from "../Important/Important";
 import Head from "next/head";
 import Image from "next/image";
 
 import "./Questions.scss";
+import "suneditor/dist/css/suneditor.min.css";
 
 type Question = {
   _id: string;
@@ -34,6 +31,7 @@ type QuestionProps = {
   data: Question[];
   topic: SubTopic;
 };
+
 const Questions = ({ data, topic }: QuestionProps) => {
   return (
     <>

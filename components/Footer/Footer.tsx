@@ -58,26 +58,20 @@ const Footer = () => {
               </li>
               <li>
                 {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Terms & Conditions
-                </Link>{" "}
-              </li>
-              <li>
-                {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Documentation
+                <Link href="/blogs" className="block text-gray-600 py-2">
+                  Blogs
                 </Link>{" "}
               </li>
             </ul>
           </div>
 
           <div className="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
-            <h6 className="font-semibold text-gray-700 mb-4">Company</h6>
+            <h6 className="font-semibold text-gray-700 mb-4">Connect</h6>
             <ul>
               <li>
                 {" "}
-                <Link href="#" className="block text-gray-600 py-2">
-                  Team
+                <Link href="/contact-me" className="block text-gray-600 py-2">
+                  Contact Me
                 </Link>{" "}
               </li>
               <li>

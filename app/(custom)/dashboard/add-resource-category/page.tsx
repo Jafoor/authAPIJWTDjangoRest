@@ -6,9 +6,13 @@ import { useRouter } from "next/navigation";
 const APP_URI = process.env.APP_URI;
 
 const Page = () => {
-  const [category, setCategory] = useState("");
+  const [name, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
+  const [topDescription, setTopDescription] = useState("");
+  const [keywords, setKeywords] = useState("");
 
   const router = useRouter();
 
@@ -21,7 +25,7 @@ const Page = () => {
         headers: {
           "Content-type": "application/json"
         },
-        body: JSON.stringify({ name: category, description, image })
+        body: JSON.stringify({ name, description, image, slug, topDescription, title, keywords })
       });
 
       if (res.ok) {
@@ -46,7 +50,7 @@ const Page = () => {
             </label>
             <input
               onChange={(e) => setCategory(e.target.value)}
-              value={category}
+              value={name}
               type="text"
               id="small-input"
               className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -81,8 +85,80 @@ const Page = () => {
               Category Image
             </label>
             <input
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setImage(e.target.value)}
               value={image}
+              type="text"
+              id="small-input"
+              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label
+              htmlFor="small-input"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Slug
+            </label>
+            <input
+              onChange={(e) => setSlug(e.target.value)}
+              value={slug}
+              type="text"
+              id="small-input"
+              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label
+              htmlFor="small-input"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Title
+            </label>
+            <input
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+              type="text"
+              id="small-input"
+              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label
+              htmlFor="small-input"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Top Description
+            </label>
+            <input
+              onChange={(e) => setTopDescription(e.target.value)}
+              value={topDescription}
+              type="text"
+              id="small-input"
+              className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label
+              htmlFor="small-input"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Keywords
+            </label>
+            <input
+              onChange={(e) => setKeywords(e.target.value)}
+              value={keywords}
               type="text"
               id="small-input"
               className="block w-1/2 p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

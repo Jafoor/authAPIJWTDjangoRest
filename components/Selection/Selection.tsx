@@ -1,27 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Questions from "../Questions/Questions";
-import "./Selection.scss";
-import Header from "../Header/Header";
-import { useSession } from "next-auth/react";
-
-import Loader from "../Loader/Loader";
 import Link from "next/link";
 const APP_URI = process.env.APP_URI;
 
+import "./Selection.scss";
+
 type SubTopic = {
+  slug: string;
   name: string;
   _id: string;
   topic: string;
 };
 
 const Selection = () => {
-  const { data: session } = useSession();
-
   const [topic, setTopic] = useState("");
   const [topics, setTopics] = useState([{ name: "", _id: "" }]);
-  const [subTopic, setSubTopic] = useState("");
   const [subTopics, setSubTopics] = useState<SubTopic[]>([]);
 
   useEffect(() => {
@@ -72,18 +66,8 @@ const Selection = () => {
           <ul className="item_list">
             {subTopics.map((item) =>
               topic === "" || topic === item.topic ? (
-                <Link
-                  href={`/questions/${subTopic}`}
-                  target="_blank"
-                  key={item._id}
-                >
-                  <li
-                    className={`item ${subTopic === item._id ? "active" : ""}`}
-                    key={item._id}
-                    onClick={() => setSubTopic(item._id)}
-                  >
-                    {item.name}
-                  </li>
+                <Link href={`/questions/${item.slug}`} key={item._id}>
+                  <li key={item._id}>{item.name}</li>
                 </Link>
               ) : null
             )}

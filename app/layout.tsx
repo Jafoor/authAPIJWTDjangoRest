@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import Providers from "@/components/Navbar/Providers";
 const inter = Inter({ subsets: ["latin"] });
 import Loader from "@/components/Loader/Loader";
-import Navbar from "@/components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://abujfor.com/"),

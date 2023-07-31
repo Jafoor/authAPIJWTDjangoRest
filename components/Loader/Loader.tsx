@@ -1,17 +1,12 @@
-import "./Loader.scss";
+import "./Loader.css";
 
 const Loader = () => {
   return (
-    <div className="spinner">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <>
+    <div className="loading"></div>
+
+<div className="content"><h3></h3></div>
+</>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   getSubTopicDetails,
   getAllSubTopic
 } from "@/app/utils/dataFetch";
+import Comment from "@/components/Comment/Comment";
 
 type Question = {
   _id: string;
@@ -25,14 +26,14 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { subtopic } = params;
-
   try {
     const res = await getSubTopicDetails(subtopic);
     return {
-      title: `${res.name} Interview Questions`,
-      description: `Discover a comprehensive collection of ${res.name} interview questions, ranging from easy to hard difficulty levels. This curated compilation includes answers to help you prepare for your next ${res.name} job interview. Expand your knowledge and gain confidence in tackling various aspects of ${res.name} development with this valuable resource`,
+      title: `${res.title}`,
+      description: `${res.shortDescription}`,
+      keywords: `${res.keywords}`,
       alternates: {
-        canonical: `/questions/${res._id}`
+        canonical: `/questions/${res.slug}`
       }
     };
   } catch (error) {
@@ -49,8 +50,8 @@ const Question = async ({ params }: { params: { subtopic: string } }) => {
   const { subtopic } = params;
   let questions, subTopic;
   try {
-    questions = await getSubTopicQuestion(subtopic);
     subTopic = await getSubTopicDetails(subtopic);
+    questions = await getSubTopicQuestion(subTopic._id.toString());
   } catch (error) {
     notFound();
   }
@@ -58,6 +59,7 @@ const Question = async ({ params }: { params: { subtopic: string } }) => {
   return (
     <>
       <Questions data={questions} topic={subTopic} />
+      <Comment id={subTopic._id.toString()} />
     </>
   );
 };

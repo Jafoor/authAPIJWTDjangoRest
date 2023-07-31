@@ -1,5 +1,6 @@
 import { getAllSubTopic } from "./utils/dataFetch";
-const APP_URI = process.env.APP_URI;
+import { getAllResource } from "./utils/resourceDataFetch";
+import { getAllBlog } from "./utils/blogDataFetch";
 
 export default async function sitemap() {
   const baseUrl = "https://nextjs13-seo.vercel.app";
@@ -9,16 +10,36 @@ export default async function sitemap() {
   const subTopicsQuestions =
     subTopics?.map((item: any) => {
       return {
-        url: `${baseUrl}/questions/${item._id}`,
+        url: `${baseUrl}/questions/${item.slug}`,
         lastModified: new Date()
       };
     }) ?? [];
+  
+  const resources = await getAllResource()
+  const allResources =
+  resources?.map((item: any) => {
+      return {
+        url: `${baseUrl}/resources/details/${item.slug}`,
+        lastModified: new Date()
+      };
+    }) ?? [];
+
+    const blogs = await getAllResource()
+    const allBlogs =
+    blogs?.map((item: any) => {
+        return {
+          url: `${baseUrl}/blogs/details/${item.slug}`,
+          lastModified: new Date()
+        };
+      }) ?? [];
 
   return [
     {
       url: baseUrl,
       lastModified: new Date()
     },
-    ...subTopicsQuestions
+    ...subTopicsQuestions,
+    ...allResources,
+    ...allBlogs
   ];
 }

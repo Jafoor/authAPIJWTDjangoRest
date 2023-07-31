@@ -116,6 +116,42 @@ const Sidebar = () => {
 
             <li>
               <Link
+                href="/dashboard/add-blog-category"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <span className="ml-3">Add Blog Category</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/dashboard/blog-category-list"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <span className="ml-3">Blog Category List</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/dashboard/add-blogs"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <span className="ml-3">Add Blogs</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/dashboard/blogs-list"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <span className="ml-3">Blogs List</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link
                 href="/dashboard/resource-category-list"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >

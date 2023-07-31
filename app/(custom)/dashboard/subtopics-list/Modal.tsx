@@ -46,8 +46,6 @@ const ShowModal = ({ deleteBtn, data }: ShowProps) => {
 
   const handleSubmit = async () => {
     try {
-      console.log(formData);
-
       await fetch(`${APP_URI}/api/subtopics/${data._id}`, {
         method: "PUT",
         headers: {

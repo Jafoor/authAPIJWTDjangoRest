@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 type FormDataType = {
   _id: string;
+  slug: string,
   user: string;
   title: string;
   shortDescription: string;
@@ -38,6 +39,7 @@ const page = async () => {
   const top: FormDataType[] = [];
   let main = {
     _id: "",
+    slug: "",
     user: "",
     title: "",
     shortDescription: "",
@@ -75,12 +77,10 @@ const page = async () => {
         <div className="container px-5 pt-24 pb-10 mx-auto">
           <div className="text-center mb-20">
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">
-              Essential Tech Resources and Expert Insights
+              Essential Tech Resources and Expert Guidelines
             </h1>
             <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">
-              Discover a wealth of curated tech resources, tips, and insights to
-              empower your tech journey. Maximize productivity and embrace
-              innovation with Tech Toolbox.
+            Unlock the power of technology with curated resources and expert guidelines. Maximize productivity and embrace innovation on your tech journey.
             </p>
             <div className="flex mt-6 justify-center">
               <div className="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
@@ -109,7 +109,7 @@ const page = async () => {
                     {item.description}
                   </p>
                   <Link
-                    href={`resources/category/${item._id}`}
+                    href={`resources/category/${item.slug}`}
                     className="mt-3 text-indigo-500 inline-flex items-center"
                   >
                     Learn More
@@ -141,22 +141,20 @@ const page = async () => {
               </div>
               <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
                 <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
-                  Space The Final Frontier
+                  
+📌 Featured & Popular Blogs 🌟
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  Street art subway tile salvia four dollar toast bitters
-                  selfies quinoa yuccie synth meditation iPhone intelligentsia
-                  prism tofu. Viral gochujang bitters dreamcatcher.
+                Explore our most viewed and popular posts! Stay ahead of the curve with the hottest topics and sought-after content. Join the buzz and dive into the best of tech.🚀💡
                 </p>
               </div>
             </div>
             <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
               <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
-                <div className="rounded-lg h-64 overflow-hidden">
+                <div className="rounded-lg h-48 overflow-hidden">
                   {main?.image ? (
                     <Image
                       src={main.image}
-                      className="rounded-md object-cover w-full h-64"
                       alt={main.title}
                       width={300}
                       height={300}
@@ -170,7 +168,7 @@ const page = async () => {
                   {main.shortDescription.slice(0, 150)}
                 </p>
                 <Link
-                  href={`/resources/details/${main._id}`}
+                  href={`/resources/details/${main.slug}`}
                   className="text-indigo-500 inline-flex items-center mt-3"
                 >
                   Learn More
@@ -194,7 +192,6 @@ const page = async () => {
                     {item?.image ? (
                       <Image
                         src={item.image}
-                        className="block md:hidden lg:block rounded-md h-48 md:h-32 m-4 md:m-0"
                         alt={item.title}
                         width={300}
                         height={300}
@@ -208,7 +205,7 @@ const page = async () => {
                     {item.shortDescription.slice(0, 150)}
                   </p>
                   <Link
-                    href={`/resources/details/${item._id}`}
+                    href={`/resources/details/${item.slug}`}
                     className="text-indigo-500 inline-flex items-center mt-3"
                   >
                     Learn More
@@ -238,12 +235,10 @@ const page = async () => {
               </div>
               <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
                 <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
-                  Space The Final Frontier
+                🌟 Latest Blogs: Stay Updated! 🌟
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  Street art subway tile salvia four dollar toast bitters
-                  selfies quinoa yuccie synth meditation iPhone intelligentsia
-                  prism tofu. Viral gochujang bitters dreamcatcher.
+                Explore our newest blog posts! From tech tips to industry news, our concise reads will keep you in the loop with the latest trends. Level up your tech game with expert insights - dive in now! 💡🚀
                 </p>
               </div>
             </div>
@@ -254,7 +249,6 @@ const page = async () => {
                     {item?.image ? (
                       <Image
                         src={item.image}
-                        className="block md:hidden lg:block rounded-md h-48 md:h-32 m-4 md:m-0"
                         alt={item.title}
                         width={300}
                         height={300}
@@ -268,7 +262,7 @@ const page = async () => {
                     {item.shortDescription.slice(0, 150)}
                   </p>
                   <Link
-                    href={`/resources/details/${item._id}`}
+                    href={`/resources/details/${item.slug}`}
                     className="text-indigo-500 inline-flex items-center mt-3"
                   >
                     Learn More
@@ -298,12 +292,10 @@ const page = async () => {
               </div>
               <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
                 <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
-                  Space The Final Frontier
+                🔥 Hot Blogs: Top Picks! 🔥
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  Street art subway tile salvia four dollar toast bitters
-                  selfies quinoa yuccie synth meditation iPhone intelligentsia
-                  prism tofu. Viral gochujang bitters dreamcatcher.
+                Dive into our top-rated blog posts, handpicked for you! Stay in the loop with trending tech topics and valuable insights. Find out what&apos;s making waves and get inspired by the best content around. Check out our hottest reads and join the tech-savvy community today! 🚀💡
                 </p>
               </div>
             </div>
@@ -314,7 +306,6 @@ const page = async () => {
                     {item?.image ? (
                       <Image
                         src={item.image}
-                        className="block md:hidden lg:block rounded-md h-48 md:h-32 m-4 md:m-0"
                         alt={item.title}
                         width={300}
                         height={300}
@@ -328,7 +319,7 @@ const page = async () => {
                     {item.shortDescription.slice(0, 150)}
                   </p>
                   <Link
-                    href={`/resources/details/${item._id}`}
+                    href={`/resources/details/${item.slug}`}
                     className="text-indigo-500 inline-flex items-center mt-3"
                   >
                     Learn More

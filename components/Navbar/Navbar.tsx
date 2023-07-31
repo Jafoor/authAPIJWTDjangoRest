@@ -49,19 +49,19 @@ const Navbar = () => {
       <div className={navbar}>
         <ul className="menu">
           <li onClick={closeNavbar} className="listItem">
-            <Link href="/" className="link">
-              Resources
+            <Link href="/resources" className="link">
+              RESOURCES
             </Link>
           </li>
 
           <li onClick={closeNavbar} className="listItem">
-            <Link href="/" className="link">
-              Test
+            <Link href="/blogs" className="link">
+              BLOGS
             </Link>
           </li>
 
           <li onClick={closeNavbar} className="listItem">
-            <Link href="/" className="link">
+            <Link href="/interviews" className="link">
               Tech Interviews
             </Link>
           </li>

@@ -5,17 +5,16 @@ import {
 } from "@/app/utils/resourceDataFetch";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-const page = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+const page = async ({ params }: { params: { slug: string } }) => {
+  const { slug } = params;
   let category;
   let posts;
   try {
-    category = await getCategoryDetails(id);
-    console.log({ category });
+    category = await getCategoryDetails(slug);
     if (category === null || category === undefined) {
       throw "not found";
     }
-    posts = await getResourcesByCategory(id);
+    posts = await getResourcesByCategory(category._id);
     if (posts === null || posts === undefined) {
       throw "not found";
     }
@@ -54,7 +53,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                   {item.shortDescription.slice(0, 160)}
                 </p>
                 <Link
-                  href={`/resources/details/${item._id}`}
+                  href={`/resources/details/${item.slug}`}
                   className="text-indigo-500 inline-flex items-center mt-4"
                 >
                   Learn More

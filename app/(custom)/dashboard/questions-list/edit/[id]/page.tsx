@@ -69,7 +69,6 @@ const FormComponent = ({ params }: { params: { id: string } }) => {
         isPublished: res.isPublished || false,
         subTopic: res.subTopic || ""
       });
-      console.log(formData);
     }
     getQuestion();
   }, []);

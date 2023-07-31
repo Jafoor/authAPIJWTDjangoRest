@@ -21,6 +21,7 @@ const FormComponent = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     user: "",
+    slug: "",
     title: "",
     shortDescription: "",
     keywords: "",
@@ -61,9 +62,9 @@ const FormComponent = ({ params }: { params: { id: string } }) => {
         tag: res.tag || "",
         popular: res.popular || false,
         category: res.category || "",
-        categoryName: res.categoryName || ""
+        categoryName: res.categoryName || "",
+        slug: res.slug || ""
       });
-      console.log(formData);
     }
     getResource();
 
@@ -129,6 +130,23 @@ const FormComponent = ({ params }: { params: { id: string } }) => {
           id="title"
           name="title"
           value={formData.title}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+
+      <div className="mb-4">
+        <label
+          htmlFor="slug"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          Slug
+        </label>
+        <input
+          type="text"
+          id="slug"
+          name="slug"
+          value={formData.slug}
           onChange={handleChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />

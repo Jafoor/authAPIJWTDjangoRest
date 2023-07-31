@@ -6,20 +6,19 @@ import Questions from "../models/questions";
 export async function getSubTopicQuestion(subtopic: string) {
   await connectMongo();
   const questions = await Questions.find({ subTopic: subtopic });
-  // const res = JSON.stringify(questions);
+  
   return questions;
 }
 
 export async function getSubTopicDetails(subtopic: string) {
-  await connectMongo();
-  const subTopics = await SubTopics.findOne({ _id: subtopic });
-  // return JSON.stringify({subTopics});
+  await connectMongo();  
+  const subTopics = await SubTopics.findOne({ slug: subtopic });
+  
   return subTopics;
 }
 
 export async function getAllSubTopic() {
   await connectMongo();
   const topics = await SubTopics.find();
-  // const res = JSON.stringify({topics});
   return topics;
 }

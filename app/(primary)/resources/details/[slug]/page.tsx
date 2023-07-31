@@ -1,39 +1,31 @@
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { getResourceDetails } from "@/app/utils/resourceDataFetch";
-import {
-  getSubTopicQuestion,
-  getSubTopicDetails,
-  getAllSubTopic
-} from "@/app/utils/dataFetch";
 import Image from "next/image";
-import Link from "next/link";
 
 import "suneditor/dist/css/suneditor.min.css";
 import "./page.scss";
-import Comment from "./Comment";
+import Comment from "@/components/Comment/Comment";
 
 const author = process.env.AUTHOR_IMAGE;
 
 export async function generateMetadata(
-  { params }: { params: { id: string } },
+  { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { id } = params;
+  const { slug } = params;
 
   try {
-    const res = await getResourceDetails(id);
+    const res = await getResourceDetails(slug);
     return {
       title: `${res.title}`,
       description: `${res.shortDescription}`,
       keywords: `${res.keywords}`,
       alternates: {
-        canonical: `/resources/details/${res._id}`
+        canonical: `/resources/details/${res.slug}`
       }
     };
   } catch (error) {
-    console.log({ error });
-
     return {
       title: "Not Found",
       description: "The page you are looking for does not exist."
@@ -41,12 +33,11 @@ export async function generateMetadata(
   }
 }
 
-const page = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+const page = async ({ params }: { params: { slug: string } }) => {
+  const { slug } = params;
   let post;
   try {
-    post = await getResourceDetails(id);
-    //   subTopic = await getSubTopicDetails(subtopic);
+    post = await getResourceDetails(slug);
   } catch (error) {
     notFound();
   }
@@ -107,10 +98,10 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
 
       <div
-        className="suneditor px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed"
+        className="suneditor px-4 lg:px-0 mt-2 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed"
         dangerouslySetInnerHTML={{ __html: post.description }}
       ></div>
-      <Comment />
+      <Comment id={post._id.toString()} />
     </main>
   );
 };

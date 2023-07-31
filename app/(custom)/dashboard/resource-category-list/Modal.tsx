@@ -11,6 +11,10 @@ type ResourceCat = {
   name?: string;
   description?: string;
   image?: string;
+  keywords?: string;
+  slug?: string;
+  topDescription?: string;
+  title?: string;
   createdAt?: string;
 };
 
@@ -22,7 +26,11 @@ const ShowModal = ({ data }: ShowProps) => {
   const [formData, setFormData] = useState({
     name: data.name,
     description: data.description,
-    image: data.image
+    image: data.image,
+    keywords: data.keywords,
+    slug: data.slug,
+    topDescription: data.topDescription,
+    title: data.title
   });
 
   const route = useRouter();
@@ -97,6 +105,58 @@ const ShowModal = ({ data }: ShowProps) => {
                   type="text"
                   name="description"
                   value={formData.description}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="slug" value="slug" />
+                </div>
+                <TextInput
+                  id="slug"
+                  type="text"
+                  name="slug"
+                  value={formData.slug}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="keywords" value="keywords" />
+                </div>
+                <TextInput
+                  id="keywords"
+                  type="text"
+                  name="keywords"
+                  value={formData.keywords}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="title" value="title" />
+                </div>
+                <TextInput
+                  id="title"
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="topDescription" value="topDescription" />
+                </div>
+                <TextInput
+                  id="topDescription"
+                  type="text"
+                  name="topDescription"
+                  value={formData.topDescription}
                   onChange={handleChange}
                 />
               </div>
